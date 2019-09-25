@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go on 秋酱的Blog</title>
+    <link>http://tangmengqiu.github.io/tags/go/</link>
+    <description>Recent content in Go on 秋酱的Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 21 Nov 2018 11:18:15 +0800</lastBuildDate>
+    
+	<atom:link href="http://tangmengqiu.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>如何在Linux服务器上安装配置go环境</title>
+      <link>http://tangmengqiu.github.io/post/2018-11-21-%E5%A6%82%E4%BD%95%E5%9C%A8linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85go%E7%8E%AF%E5%A2%83/</link>
+      <pubDate>Wed, 21 Nov 2018 11:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2018-11-21-%E5%A6%82%E4%BD%95%E5%9C%A8linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85go%E7%8E%AF%E5%A2%83/</guid>
+      <description>如何在Linux服务器上安装go环境 1 首先在这个地址找到你所需要安装的go压缩包： https://golang.org/dl/ 假如当前我想下载的包名叫做： go1.11.2.linux-amd64.tar.gz 那么在命令行中输入： sudo wget https://storage.googleapis.com/golang/go1.11.linux-amd64.tar.gz</description>
+    </item>
+    
+  </channel>
+</rss>

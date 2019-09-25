@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>触发器 on 秋酱的Blog</title>
+    <link>http://tangmengqiu.github.io/tags/%E8%A7%A6%E5%8F%91%E5%99%A8/</link>
+    <description>Recent content in 触发器 on 秋酱的Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 23 Mar 2019 11:18:15 +0800</lastBuildDate>
+    
+	<atom:link href="http://tangmengqiu.github.io/tags/%E8%A7%A6%E5%8F%91%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MySql触发器示范</title>
+      <link>http://tangmengqiu.github.io/post/2019-03-23-mysql%E8%A7%A6%E5%8F%91%E5%99%A8%E7%A4%BA%E4%BE%8B/</link>
+      <pubDate>Sat, 23 Mar 2019 11:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2019-03-23-mysql%E8%A7%A6%E5%8F%91%E5%99%A8%E7%A4%BA%E4%BE%8B/</guid>
+      <description>MySQL触发器示例 1. 触发器要求： 假设有一个借书记录表，规定一张借书卡一学期只能借至多2本书，当借第三本书时，触发器触发，输出不能借三本书，</description>
+    </item>
+    
+  </channel>
+</rss>

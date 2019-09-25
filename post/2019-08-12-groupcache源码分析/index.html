@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>groupcache源码分析 - 秋酱的Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="秋酱" /><meta name="description" content="经典官方项目解读" /><meta name="keywords" content="groupcache" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.1 with theme even" />
+
+
+<link rel="canonical" href="http://tangmengqiu.github.io/post/2019-08-12-groupcache%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="groupcache源码分析" />
+<meta property="og:description" content="经典官方项目解读" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://tangmengqiu.github.io/post/2019-08-12-groupcache%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" />
+<meta property="article:published_time" content="2019-08-12T11:18:15+08:00" />
+<meta property="article:modified_time" content="2019-08-12T11:18:15+08:00" />
+<meta itemprop="name" content="groupcache源码分析">
+<meta itemprop="description" content="经典官方项目解读">
+
+
+<meta itemprop="datePublished" content="2019-08-12T11:18:15&#43;08:00" />
+<meta itemprop="dateModified" content="2019-08-12T11:18:15&#43;08:00" />
+<meta itemprop="wordCount" content="1458">
+
+
+
+<meta itemprop="keywords" content="golang,cache," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="groupcache源码分析"/>
+<meta name="twitter:description" content="经典官方项目解读"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">勒是秋酱</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">勒是秋酱</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">groupcache源码分析</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-08-12 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%BA%90%E7%A0%81/"> 源码 </a>
+            </div>
+          <span class="more-meta"> 1458 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-源文件作用">1.源文件作用</a></li>
+<li><a href="#2-consistanthash解析">2.consistanthash解析</a></li>
+<li><a href="#3-singleflight解析">3.singleflight解析</a></li>
+<li><a href="#4-groupcache-解析">4.groupcache 解析</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h2 id="1-源文件作用">1.源文件作用</h2>
+
+<ul>
+<li><p>consistanthash.go: 实现一致性哈希,使得每一个同样的key得到的结果都是一样的.用途是找一个合适的node,使得负载均衡</p></li>
+
+<li><p>lru.go: 顾名思义,这是实现了一个最近最少使用的算法,用于淘汰最不活跃的item</p></li>
+
+<li><p>singleflight.go: 用于处理多个带相同key的请求,使得只有其中一个被处理,另外的直接使用被处理的那个请求的结果,然后直接返回.</p></li>
+
+<li><p>byteview.go: 用于封装[]byte和string,对外无差别使用</p></li>
+
+<li><p>http.go: http的封装</p></li>
+
+<li><p>peers.go: 单个node的一些实现,例如:注册节点&hellip;</p></li>
+
+<li><p>sinks.go: 结合byteview,实现对[]byte,string,proto的数据封装</p></li>
+
+<li><p>groupcache.go: 库入口,对外提供主api.</p></li>
+</ul>
+
+<h2 id="2-consistanthash解析">2.consistanthash解析</h2>
+
+<p>consistanthash.go原文件中,有一个Map来保存一个key到该key的哈希,结构是这样:</p>
+
+<pre><code>type Map struct {
+	hash     Hash
+	replicas int
+	keys     []int // Sorted
+	hashMap  map[int]string
+}
+</code></pre>
+
+<p>hash为哈希函数,如果传进的是nil那么就用默认的<code>crc32.ChecksumIEEE</code>,replicas就是<code>虚拟桶</code>的概念,即将一个key存到多个桶里面,使得分配更加均匀,负载更加均衡.[]keys里面就是排好序的哈希值,hashMap存哈希值到key的映射.该Map的Get方法:</p>
+
+<pre><code>	hash := int(m.hash([]byte(key)))
+
+	// Binary search for appropriate replica.
+	idx := sort.Search(len(m.keys), func(i int) bool { return m.keys[i] &gt;= hash })
+    ...
+    return m.hashMap[m.keys[idx]]
+</code></pre>
+
+<p>会将任意一个key的哈希值计算出来,取第一个大于 []keys中保存的那个哈希值,然后取出存在对应hashMap的key.举个例子:</p>
+
+<pre><code>    c := consistenthash.New(70, nil)
+	c.Add(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;)
+	for _, key := range []string{&quot;what&quot;, &quot;nice&quot;, &quot;what&quot;, &quot;nice&quot;, &quot;good&quot;, &quot;yes!&quot;} {
+		fmt.Printf(&quot;%s -&gt; %s\n&quot;, key, c.Get(key))
+	}
+</code></pre>
+
+<p>输出结果:</p>
+
+<pre><code>// Expect output
+// -------------
+// what -&gt; C
+// nice -&gt; A
+// what -&gt; C
+// nice -&gt; A
+// good -&gt; D
+// yes! -&gt; E
+</code></pre>
+
+<p>这样结果就会比较均匀,当我们的key值代表node的时候,如:127.0.0.1,127.0.0.2&hellip;使数据均匀的缓存到node中去.</p>
+
+<h2 id="3-singleflight解析">3.singleflight解析</h2>
+
+<p>如果一个node短时间内收到了多个对同一key值的查询,那么我们应该只处理第一个,然后其他请求都返回该值.</p>
+
+<pre><code>func (g *Group) Do(key string, fn func() (interface{}, error)) (interface{}, error) {
+	g.mu.Lock()
+	if g.m == nil {
+		g.m = make(map[string]*call)
+	}
+	if c, ok := g.m[key]; ok {
+		g.mu.Unlock()
+		c.wg.Wait()
+		return c.val, c.err
+	}
+	c := new(call)
+	c.wg.Add(1)
+	g.m[key] = c
+	g.mu.Unlock()
+
+	c.val, c.err = fn()
+	c.wg.Done()
+
+	g.mu.Lock()
+	delete(g.m, key)
+	g.mu.Unlock()
+
+	return c.val, c.err
+}
+</code></pre>
+
+<p>以上代码表示:g有一个map来保存该caller与key的映射,当m==nil表示没有对该key的请求进入,此时应初始化该map,此时注意:<code>c.val, c.err = fn()</code>这一行是主要做计算的步骤,在这行以前应该设置好key到一个caller的映射,并设置<code>wg.Add(1)</code>,计算完成后,再将map删除掉:<code>delete</code>,在删除以前,有可能其他的对该key的请求进来,则会进入到第二个if逻辑中,根据key值拿到前面设置的那个caller,并且通过<code>wg.Wait()</code>,等待caller被处理完,即:<code>wg.Done()</code>,拿到结果后直接返回.</p>
+
+<h2 id="4-groupcache-解析">4.groupcache 解析</h2>
+
+<pre><code>type Group struct {
+	name       string
+	getter     Getter
+	peersOnce  sync.Once
+	peers      PeerPicker
+	cacheBytes int64 // limit for sum of mainCache and hotCache size
+	mainCache cache	
+	hotCache cache
+	loadGroup flightGroup
+	_ int32 // force Stats to be 8-byte aligned on 32-bit platforms
+
+	// Stats are statistics on the group.
+	Stats Stats
+}
+
+type cache struct {
+	mu         sync.RWMutex
+	nbytes     int64 // of all keys and values
+	lru        *lru.Cache
+	nhit, nget int64
+	nevict     int64 // number of evictions
+}
+
+//lru.Cache
+type Cache struct {
+	// MaxEntries is the maximum number of cache entries before
+	// an item is evicted. Zero means no limit.
+	MaxEntries int
+
+	// OnEvicted optionally specifies a callback function to be
+	// executed when an entry is purged from the cache.
+	OnEvicted func(key Key, value interface{})
+
+	ll    *list.List
+	cache map[interface{}]*list.Element
+}
+</code></pre>
+
+<p>具体缓存数据的数据结构是<code>cache</code>,cache中又是lru的Cache结构来存储数据,主要是一个链表<code>ll</code>,用来做数据item的活跃情况,删除时选取链表最后一个:从链表删除并从cache的map中删除.请求了一个item后会将它移到链表的最前面,表示活跃.<code>cache</code>是一个map用来存数据.</p>
+
+<p>回到<code>Group</code>,当初始化一个Group时,会在变量<code>groups = make(map[string]*Group)</code>这样一个map里面加入该key和Group,</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">秋酱</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-08-12
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/weixin-qrcode.png">
+        <span>wechat</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/alipay.png">
+        <span>alipay</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/golang/">golang</a>
+          <a href="/tags/cache/">cache</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2019-08-14-aufs%E5%92%8Cdocker/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">aufs和docker</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2019-07-21-cache2go%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+            <span class="next-text nav-default">cache2go源码分析</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="comments-gitment"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitment = new Gitment({
+        id: '2019-08-12 11:18:15 \x2b0800 CST',
+        title: 'groupcache源码分析',
+        link: decodeURI(location.href),
+        desc: '1.源文件作用 consistanthash.go: 实现一致性哈希,使得每一个同样的key得到的结果都是一样的.用途是找一个合适的node,使得负载均衡 lru.go: 顾名思义,这是实现了一',
+        owner: 'tangmengqiu',
+        repo: 'bloggitcomment',
+        oauth: {
+          client_id: '69ba0036f6b242f8b964',
+          client_secret: '2f11bca7eb0ffc94c2f90610d5c023442a0401e1'
+        }
+      });
+      gitment.render('comments-gitment');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="sctmq@zju.edu.cn" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/tangmengqiu" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/tang-meng-qiu-75/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://tangmengqiu.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> site pv: <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> site uv: <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">秋酱</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

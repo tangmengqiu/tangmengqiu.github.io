@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pages on 秋酱的Blog</title>
+    <link>http://tangmengqiu.github.io/tags/pages/</link>
+    <description>Recent content in pages on 秋酱的Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 25 Sep 2019 09:18:15 +0800</lastBuildDate>
+    
+	<atom:link href="http://tangmengqiu.github.io/tags/pages/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>博客从 jekyll 迁移至 hugo &#43; github page 全过程</title>
+      <link>http://tangmengqiu.github.io/post/2019-09-25-%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB%E8%87%B3hugo%E5%85%A8%E8%BF%87%E7%A8%8B/</link>
+      <pubDate>Wed, 25 Sep 2019 09:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2019-09-25-%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB%E8%87%B3hugo%E5%85%A8%E8%BF%87%E7%A8%8B/</guid>
+      <description>我的博客迁移之路 为什么要迁移 之前我是从GitHub 上面fork了一份别人的仓库，然后把post目录下的内容一换，每次推送到GitHub上，访</description>
+    </item>
+    
+  </channel>
+</rss>

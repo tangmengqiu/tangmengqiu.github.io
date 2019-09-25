@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>MySql触发器示范 - 秋酱的Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="秋酱" /><meta name="description" content="用MySQL实现一个触发器" /><meta name="keywords" content="触发器" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.1 with theme even" />
+
+
+<link rel="canonical" href="http://tangmengqiu.github.io/post/2019-03-23-mysql%E8%A7%A6%E5%8F%91%E5%99%A8%E7%A4%BA%E4%BE%8B/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="MySql触发器示范" />
+<meta property="og:description" content="用MySQL实现一个触发器" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://tangmengqiu.github.io/post/2019-03-23-mysql%E8%A7%A6%E5%8F%91%E5%99%A8%E7%A4%BA%E4%BE%8B/" />
+<meta property="article:published_time" content="2019-03-23T11:18:15+08:00" />
+<meta property="article:modified_time" content="2019-03-23T11:18:15+08:00" />
+<meta itemprop="name" content="MySql触发器示范">
+<meta itemprop="description" content="用MySQL实现一个触发器">
+
+
+<meta itemprop="datePublished" content="2019-03-23T11:18:15&#43;08:00" />
+<meta itemprop="dateModified" content="2019-03-23T11:18:15&#43;08:00" />
+<meta itemprop="wordCount" content="659">
+
+
+
+<meta itemprop="keywords" content="mysql,触发器," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MySql触发器示范"/>
+<meta name="twitter:description" content="用MySQL实现一个触发器"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">勒是秋酱</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">勒是秋酱</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">MySql触发器示范</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-03-23 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
+            </div>
+          <span class="more-meta"> 659 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#mysql触发器示例">MySQL触发器示例</a>
+<ul>
+<li><a href="#1-触发器要求">1. 触发器要求：</a></li>
+<li><a href="#2-首先数据库">2. 首先数据库</a></li>
+<li><a href="#3-创建触发器">3. 创建触发器</a></li>
+<li><a href="#4-查看结果">4. 查看结果</a></li>
+<li><a href="#5-结语">5. 结语</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="mysql触发器示例">MySQL触发器示例</h1>
+
+<h2 id="1-触发器要求">1. 触发器要求：</h2>
+
+<p>假设有一个借书记录表，规定一张借书卡一学期只能借至多2本书，当借第三本书时，触发器触发，输出不能借三本书，并自动回滚。</p>
+
+<h2 id="2-首先数据库">2. 首先数据库</h2>
+
+<p>创建数据库 <code>借书记录borrow</code>：
+各属性（卡号,借书证号,借期,还期）的类型如下:</p>
+
+<pre><code>	cno		char(7),
+	bno		char(8),
+	borrow_date	date,
+	return_date	date,
+</code></pre>
+
+<p>插入两条数据：</p>
+
+<pre><code>1. ('cno4','bno1','2010-9-4','2010-9-10');
+2. ('cno4','bno2','2010-9-4','2010-9-10');
+
+</code></pre>
+
+<p>结果如下图所示：</p>
+
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcly1g1cs1kjrgcj31ak0lkjuf.jpg" alt="" /></p>
+
+<h2 id="3-创建触发器">3. 创建触发器</h2>
+
+<p>代码如下：</p>
+
+<pre><code>DELIMITER ||
+CREATE TRIGGER borrow_warning AFTER INSERT ON borrow FOR EACH ROW
+BEGIN
+DECLARE num int;
+DECLARE msgs VARCHAR(60);
+set num =(select count(cno) FROM borrow WHERE cno=new.cno);
+IF num&gt;2 THEN
+select 'cannot brorow three books' into @msgs;
+delete FROM borrow WHERE cno=new.cno AND bno=new.bno ;
+END IF;
+END ||
+</code></pre>
+
+<p>创建触发器后记得取消符号声明：<code>DELIMITER ;</code>，后面才能正常使用<code>;</code></p>
+
+<p>需要注意的是：</p>
+
+<p>1 MySQL的触发器中没有<code>print</code>函数，所以我定义了一个变量<code>msgs</code>,当借了三本书条件触发时，我将需要输出的信息传入变量<code>msgs</code></p>
+
+<p>2 MySQL的触发器中没有<code>rollback</code>，所以我曲线救国，用<code>delete</code>将新插入的那条记录删除（当然这条删除语句在某些情况下会删错，这里我就懒得深究了）</p>
+
+<h2 id="4-查看结果">4. 查看结果</h2>
+
+<p>在此之前我们以插入了两条记录，并且两条记录的<code>cno</code>都是<code>cno4</code>，先查看一下<code>msgs</code>的值：
+<img src="https://ws3.sinaimg.cn/large/006tKfTcly1g1csbipsy2j30rq0bk3z4.jpg" alt="" />
+还没有值，因为我们的触发器还没有触发（虽然我事先插入两条数据，再创建的触发器，不过逻辑上肯定是应该<code>msgs=null</code>的）。那么我再插入一条数据：</p>
+
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcly1g1csdo1d34j327y0go0vt.jpg" alt="" /></p>
+
+<p>报错了，提示无法更新<code>borrow</code>表，其实就是插入了同一个<code>cno</code>的第三条借书记录，触发了触发器，再看看<code>msgs</code>是什么呢：</p>
+
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcly1g1csf7on7sj30tm0c6q3q.jpg" alt="" /></p>
+
+<p>这正是我们想要的结果。</p>
+
+<h2 id="5-结语">5. 结语</h2>
+
+<p>MySQL触发器是个天坑，花了我几个小时写这玩意儿，有条件的同学去用<code>sqlserver</code>试试。shit,触发器里的<code>borrow</code>打成了<code>brorow</code>.</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">秋酱</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-03-23
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/weixin-qrcode.png">
+        <span>wechat</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/alipay.png">
+        <span>alipay</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/mysql/">mysql</a>
+          <a href="/tags/%E8%A7%A6%E5%8F%91%E5%99%A8/">触发器</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2019-07-21-cache2go%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">cache2go源码分析</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2019-03-13-%E4%BB%A5macos%E5%8E%9F%E7%94%9Fdocker%E5%88%9B%E5%BB%BAk8s%E9%9B%86%E7%BE%A4%E4%B8%8A/">
+            <span class="next-text nav-default">以macOS原生docker创建k8s集群(上)</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="comments-gitment"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitment = new Gitment({
+        id: '2019-03-23 11:18:15 \x2b0800 CST',
+        title: 'MySql触发器示范',
+        link: decodeURI(location.href),
+        desc: 'MySQL触发器示例 1. 触发器要求： 假设有一个借书记录表，规定一张借书卡一学期只能借至多2本书，当借第三本书时，触发器触发，输出不能借三本书，',
+        owner: 'tangmengqiu',
+        repo: 'bloggitcomment',
+        oauth: {
+          client_id: '69ba0036f6b242f8b964',
+          client_secret: '2f11bca7eb0ffc94c2f90610d5c023442a0401e1'
+        }
+      });
+      gitment.render('comments-gitment');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="sctmq@zju.edu.cn" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/tangmengqiu" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/tang-meng-qiu-75/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://tangmengqiu.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> site pv: <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> site uv: <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">秋酱</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

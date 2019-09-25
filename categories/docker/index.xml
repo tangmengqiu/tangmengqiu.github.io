@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>docker on 秋酱的Blog</title>
+    <link>http://tangmengqiu.github.io/categories/docker/</link>
+    <description>Recent content in docker on 秋酱的Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 14 Mar 2019 11:18:15 +0800</lastBuildDate>
+    
+	<atom:link href="http://tangmengqiu.github.io/categories/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>以macOS原生docker创建k8s集群(上)</title>
+      <link>http://tangmengqiu.github.io/post/2019-03-13-%E4%BB%A5macos%E5%8E%9F%E7%94%9Fdocker%E5%88%9B%E5%BB%BAk8s%E9%9B%86%E7%BE%A4%E4%B8%8A/</link>
+      <pubDate>Thu, 14 Mar 2019 11:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2019-03-13-%E4%BB%A5macos%E5%8E%9F%E7%94%9Fdocker%E5%88%9B%E5%BB%BAk8s%E9%9B%86%E7%BE%A4%E4%B8%8A/</guid>
+      <description>以macOS原生docker创建k8s集群(上) 1 容器已经成为软件开发者的热门讨论，许多开发者也热衷于研究容器及其编排工具的应用。而dock</description>
+    </item>
+    
+  </channel>
+</rss>

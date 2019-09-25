@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>博客从 jekyll 迁移至 hugo &#43; github page 全过程 - 秋酱的Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="秋酱" /><meta name="description" content="hugo 博客迁移" /><meta name="keywords" content="hugo" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.1 with theme even" />
+
+
+<link rel="canonical" href="http://tangmengqiu.github.io/post/2019-09-25-%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB%E8%87%B3hugo%E5%85%A8%E8%BF%87%E7%A8%8B/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="博客从 jekyll 迁移至 hugo &#43; github page 全过程" />
+<meta property="og:description" content="hugo 博客迁移" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://tangmengqiu.github.io/post/2019-09-25-%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB%E8%87%B3hugo%E5%85%A8%E8%BF%87%E7%A8%8B/" />
+<meta property="article:published_time" content="2019-09-25T09:18:15+08:00" />
+<meta property="article:modified_time" content="2019-09-25T09:18:15+08:00" />
+<meta itemprop="name" content="博客从 jekyll 迁移至 hugo &#43; github page 全过程">
+<meta itemprop="description" content="hugo 博客迁移">
+
+
+<meta itemprop="datePublished" content="2019-09-25T09:18:15&#43;08:00" />
+<meta itemprop="dateModified" content="2019-09-25T09:18:15&#43;08:00" />
+<meta itemprop="wordCount" content="1198">
+
+
+
+<meta itemprop="keywords" content="hugo,pages," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="博客从 jekyll 迁移至 hugo &#43; github page 全过程"/>
+<meta name="twitter:description" content="hugo 博客迁移"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">勒是秋酱</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">勒是秋酱</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">博客从 jekyll 迁移至 hugo &#43; github page 全过程</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-09-25 </span>
+        <div class="post-category">
+            <a href="/categories/blog/"> blog </a>
+            </div>
+          <span class="more-meta"> 1198 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#我的博客迁移之路">我的博客迁移之路</a>
+<ul>
+<li><a href="#为什么要迁移">为什么要迁移</a></li>
+<li><a href="#quick-start">quick start</a></li>
+<li><a href="#迁移老博客的文章">迁移老博客的文章</a></li>
+<li><a href="#部署到github-page">部署到GitHub page</a></li>
+<li><a href="#添加评论">添加评论</a></li>
+<li><a href="#其他的一些配置">其他的一些配置</a></li>
+<li><a href="#参考">参考</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="我的博客迁移之路">我的博客迁移之路</h1>
+
+<h2 id="为什么要迁移">为什么要迁移</h2>
+
+<p>之前我是从GitHub 上面fork了一份别人的仓库，然后把<code>post</code>目录下的内容一换，每次推送到GitHub上，访问 <code>https:username.github.io</code>就能看自己的博客。之前是用的<code>jekyll + github page</code>来做的博客，后来发现每次push新的代码，要等好长的时间才能看到博客更新，这个速度有点忍受不了，我自己本来也是做go开发的，所以本着对<code>hugo</code>的信任(确实构建速度是用毫秒计的），准备再折腾一番。</p>
+
+<h2 id="quick-start">quick start</h2>
+
+<p>直接安装hugo的二进制，初始化一个目录，非常的流畅。</p>
+
+<pre><code>#Mac的brew下载非常方便
+brew new Hugo
+
+hugo new site quickstart
+
+cd quikstart
+
+</code></pre>
+
+<p>到这里Hugo已经帮我们把框架搭好了。然后可以下载一个好看的主题:<code>https://themes.gohugo.io</code> ，然后做出第一个页面：</p>
+
+<pre><code>#下载一个主题，如even
+git clone https://github.com/olOwOlo/hugo-theme-even themes/even 
+
+#拷贝even的配置文件
+
+cp themes/even
+/exampleSite/config.toml ./
+
+#新建第一篇文章
+hugo new post/my-first-post.md
+
+#看看效果
+hugo server -D
+#浏览器打开：localhost:1313
+
+</code></pre>
+
+<h2 id="迁移老博客的文章">迁移老博客的文章</h2>
+
+<p>我将以前仓库的 _post目录下的Markdown文件拷贝到当前的post目录下，然后注意要将最前面的title，date等格式换成当前使用的主题的样式，否则在页面渲染的时候，会解析不出来。</p>
+
+<h2 id="部署到github-page">部署到GitHub page</h2>
+
+<p>首先要生成<code>public/</code> 文件夹，生成的网页静态页面全都在这个文件夹里，所以部署的时候只需要将public推到我的GitHub仓库就好了。
+这里我在网上借鉴了一个脚本，在这之前首先要在GitHub创建好放博客的仓库。</p>
+
+<pre><code>#!/bin/bash
+# 部署到 github pages 脚本
+# 错误时终止脚本
+set -e
+
+# 删除上一次构建的打包文件夹
+rm -rf public
+
+# 打包。even 是主题
+hugo -t even # if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`
+
+# 进入打包文件夹
+cd public
+
+# 添加 readme
+echo '## Store Hugo HTML files &lt;br&gt; Blog Markdown File [https://github.com/tangmengqiu/tangmengqiu.github.io](https://github.com/tangmengqiu/tangmengqiu.github.io)' &gt; README.md
+# Add changes to git.
+git init
+git add -A
+
+# Commit changes.
+msg=&quot;building site `date`&quot;
+if [ $# -eq 1 ]
+  then msg=&quot;$1&quot;
+fi
+git commit -m &quot;$msg&quot;
+
+# 推送到 github pages
+# tangmengqiu.github.io 只能使用 master分支
+# -f 强制推送
+git push -f git@github.com:tangmengqiu/tangmengqiu.github.io.git master
+
+# 回到原文件夹
+cd ..
+</code></pre>
+
+<p>然后<code>sh deploy.sh</code> 就可以浏览器打开：<code>YourUserName.github.io</code>查看你自己的博客了。</p>
+
+<h2 id="添加评论">添加评论</h2>
+
+<p>我是用的GitHub的gitment来做的评论系统，原因就是比较简单且免费，先要去GitHub的<a href="https://github.com/settings/applications/new">设置</a>获取授权及token等，可参考这篇<a href="https://keysaim.github.io/post/2017-08-16-how-to-add-comments/">文章</a>,然后在配置文件中：</p>
+
+<pre><code>[params.gitment]         
+    owner = &quot;tangmengqiu&quot;              # Your GitHub ID
+    repo = &quot;bloggitcomment&quot;               # The repo to store comments
+    clientId = &quot;换成你自己的id&quot;           # Your client ID
+    clientSecret = &quot;换成自己的secret&quot;       # Your client secret
+</code></pre>
+
+<h2 id="其他的一些配置">其他的一些配置</h2>
+
+<pre><code>[params.reward]                     # 文章打赏
+    enable = true
+    wechat = &quot;/weixin.png&quot;           
+    alipay = &quot;/alipay.png&quot;  
+</code></pre>
+
+<p>这里要注意路径，二维码从项目跟目录的路径我是放在：<code>quickstart/themes/even/static</code></p>
+
+<p><code>moreMeta = true</code> 可以开启字数统计和阅读时间</p>
+
+<p>还有代码高亮的问题我一直解决不好，我使用的是：<code>highlightInClient = true</code> ，但是渲染的效果不是很好，有懂得兄弟可以指点下。</p>
+
+<p>最后开启了<code>busuanzi</code>统计访问次数</p>
+
+<pre><code>[params.busuanzi]         # 是否使用不蒜子统计站点访问量
+    enable = true
+    siteUV = true
+    sitePV = true
+    pagePV = true
+</code></pre>
+
+<h2 id="参考">参考</h2>
+
+<p>1.<a href="https://jdhao.github.io/2018/10/10/hexo_to_hugo/">https://jdhao.github.io/2018/10/10/hexo_to_hugo/</a></p>
+
+<p>2.<a href="https://keysaim.github.io/post/blog/deploy-hugo-blog-in-github.io/">https://keysaim.github.io/post/blog/deploy-hugo-blog-in-github.io/</a></p>
+
+<p>3.<a href="https://keysaim.github.io/post/2017-08-16-how-to-add-comments/">https://keysaim.github.io/post/2017-08-16-how-to-add-comments/</a></p>
+
+<p>4.<a href="https://nusr.github.io/post/2019/2019-04-26-creat-hugo-blog/">https://nusr.github.io/post/2019/2019-04-26-creat-hugo-blog/</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">秋酱</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-09-25
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/weixin-qrcode.png">
+        <span>wechat</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/alipay.png">
+        <span>alipay</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/hugo/">hugo</a>
+          <a href="/tags/pages/">pages</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/2019-08-14-aufs%E5%92%8Cdocker/">
+            <span class="next-text nav-default">aufs和docker</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="comments-gitment"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitment = new Gitment({
+        id: '2019-09-25 09:18:15 \x2b0800 CST',
+        title: '博客从 jekyll 迁移至 hugo \x2b github page 全过程',
+        link: decodeURI(location.href),
+        desc: '我的博客迁移之路 为什么要迁移 之前我是从GitHub 上面fork了一份别人的仓库，然后把post目录下的内容一换，每次推送到GitHub上，访',
+        owner: 'tangmengqiu',
+        repo: 'bloggitcomment',
+        oauth: {
+          client_id: '69ba0036f6b242f8b964',
+          client_secret: '2f11bca7eb0ffc94c2f90610d5c023442a0401e1'
+        }
+      });
+      gitment.render('comments-gitment');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="sctmq@zju.edu.cn" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/tangmengqiu" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/tang-meng-qiu-75/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://tangmengqiu.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> site pv: <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> site uv: <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">秋酱</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

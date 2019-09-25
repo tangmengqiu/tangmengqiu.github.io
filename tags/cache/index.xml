@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cache on 秋酱的Blog</title>
+    <link>http://tangmengqiu.github.io/tags/cache/</link>
+    <description>Recent content in cache on 秋酱的Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 12 Aug 2019 11:18:15 +0800</lastBuildDate>
+    
+	<atom:link href="http://tangmengqiu.github.io/tags/cache/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>groupcache源码分析</title>
+      <link>http://tangmengqiu.github.io/post/2019-08-12-groupcache%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</link>
+      <pubDate>Mon, 12 Aug 2019 11:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2019-08-12-groupcache%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</guid>
+      <description>1.源文件作用 consistanthash.go: 实现一致性哈希,使得每一个同样的key得到的结果都是一样的.用途是找一个合适的node,使得负载均衡 lru.go: 顾名思义,这是实现了一</description>
+    </item>
+    
+    <item>
+      <title>cache2go源码分析</title>
+      <link>http://tangmengqiu.github.io/post/2019-07-21-cache2go%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</link>
+      <pubDate>Sun, 21 Jul 2019 11:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2019-07-21-cache2go%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</guid>
+      <description>cache2go源码分析 1.cache2go的特点 cache2go是我在u网络上看到许多推荐的golang学习的经典项目，它代码量小，工程结</description>
+    </item>
+    
+  </channel>
+</rss>

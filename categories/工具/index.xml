@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>工具 on 秋酱的Blog</title>
+    <link>http://tangmengqiu.github.io/categories/%E5%B7%A5%E5%85%B7/</link>
+    <description>Recent content in 工具 on 秋酱的Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 23 Nov 2018 11:18:15 +0800</lastBuildDate>
+    
+	<atom:link href="http://tangmengqiu.github.io/categories/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>如何解决一台电脑多个git账号关联</title>
+      <link>http://tangmengqiu.github.io/post/2018-11-23-%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E4%B8%80%E5%8F%B0%E7%94%B5%E8%84%91%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E6%88%B7%E5%85%B3%E8%81%94%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Fri, 23 Nov 2018 11:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2018-11-23-%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E4%B8%80%E5%8F%B0%E7%94%B5%E8%84%91%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E6%88%B7%E5%85%B3%E8%81%94%E9%97%AE%E9%A2%98/</guid>
+      <description>如何解决一台电脑多个git账号关联 1.场景介绍 现在我手中一台电脑，公司用的gitlab仓库，使用的是公司邮箱注册，所以需要我本地git推送时</description>
+    </item>
+    
+    <item>
+      <title>如何在Linux服务器上安装配置go环境</title>
+      <link>http://tangmengqiu.github.io/post/2018-11-21-%E5%A6%82%E4%BD%95%E5%9C%A8linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85go%E7%8E%AF%E5%A2%83/</link>
+      <pubDate>Wed, 21 Nov 2018 11:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2018-11-21-%E5%A6%82%E4%BD%95%E5%9C%A8linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85go%E7%8E%AF%E5%A2%83/</guid>
+      <description>如何在Linux服务器上安装go环境 1 首先在这个地址找到你所需要安装的go压缩包： https://golang.org/dl/ 假如当前我想下载的包名叫做： go1.11.2.linux-amd64.tar.gz 那么在命令行中输入： sudo wget https://storage.googleapis.com/golang/go1.11.linux-amd64.tar.gz</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 秋酱的Blog</title>
+    <link>http://tangmengqiu.github.io/post/</link>
+    <description>Recent content in Posts on 秋酱的Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 25 Sep 2019 09:18:15 +0800</lastBuildDate>
+    
+	<atom:link href="http://tangmengqiu.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>博客从 jekyll 迁移至 hugo &#43; github page 全过程</title>
+      <link>http://tangmengqiu.github.io/post/2019-09-25-%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB%E8%87%B3hugo%E5%85%A8%E8%BF%87%E7%A8%8B/</link>
+      <pubDate>Wed, 25 Sep 2019 09:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2019-09-25-%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB%E8%87%B3hugo%E5%85%A8%E8%BF%87%E7%A8%8B/</guid>
+      <description>我的博客迁移之路 为什么要迁移 之前我是从GitHub 上面fork了一份别人的仓库，然后把post目录下的内容一换，每次推送到GitHub上，访</description>
+    </item>
+    
+    <item>
+      <title>aufs和docker</title>
+      <link>http://tangmengqiu.github.io/post/2019-08-14-aufs%E5%92%8Cdocker/</link>
+      <pubDate>Wed, 14 Aug 2019 11:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2019-08-14-aufs%E5%92%8Cdocker/</guid>
+      <description>什么是aufs</description>
+    </item>
+    
+    <item>
+      <title>groupcache源码分析</title>
+      <link>http://tangmengqiu.github.io/post/2019-08-12-groupcache%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</link>
+      <pubDate>Mon, 12 Aug 2019 11:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2019-08-12-groupcache%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</guid>
+      <description>1.源文件作用 consistanthash.go: 实现一致性哈希,使得每一个同样的key得到的结果都是一样的.用途是找一个合适的node,使得负载均衡 lru.go: 顾名思义,这是实现了一</description>
+    </item>
+    
+    <item>
+      <title>cache2go源码分析</title>
+      <link>http://tangmengqiu.github.io/post/2019-07-21-cache2go%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</link>
+      <pubDate>Sun, 21 Jul 2019 11:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2019-07-21-cache2go%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</guid>
+      <description>cache2go源码分析 1.cache2go的特点 cache2go是我在u网络上看到许多推荐的golang学习的经典项目，它代码量小，工程结</description>
+    </item>
+    
+    <item>
+      <title>MySql触发器示范</title>
+      <link>http://tangmengqiu.github.io/post/2019-03-23-mysql%E8%A7%A6%E5%8F%91%E5%99%A8%E7%A4%BA%E4%BE%8B/</link>
+      <pubDate>Sat, 23 Mar 2019 11:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2019-03-23-mysql%E8%A7%A6%E5%8F%91%E5%99%A8%E7%A4%BA%E4%BE%8B/</guid>
+      <description>MySQL触发器示例 1. 触发器要求： 假设有一个借书记录表，规定一张借书卡一学期只能借至多2本书，当借第三本书时，触发器触发，输出不能借三本书，</description>
+    </item>
+    
+    <item>
+      <title>以macOS原生docker创建k8s集群(上)</title>
+      <link>http://tangmengqiu.github.io/post/2019-03-13-%E4%BB%A5macos%E5%8E%9F%E7%94%9Fdocker%E5%88%9B%E5%BB%BAk8s%E9%9B%86%E7%BE%A4%E4%B8%8A/</link>
+      <pubDate>Thu, 14 Mar 2019 11:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2019-03-13-%E4%BB%A5macos%E5%8E%9F%E7%94%9Fdocker%E5%88%9B%E5%BB%BAk8s%E9%9B%86%E7%BE%A4%E4%B8%8A/</guid>
+      <description>以macOS原生docker创建k8s集群(上) 1 容器已经成为软件开发者的热门讨论，许多开发者也热衷于研究容器及其编排工具的应用。而dock</description>
+    </item>
+    
+    <item>
+      <title>如何解决一台电脑多个git账号关联</title>
+      <link>http://tangmengqiu.github.io/post/2018-11-23-%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E4%B8%80%E5%8F%B0%E7%94%B5%E8%84%91%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E6%88%B7%E5%85%B3%E8%81%94%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Fri, 23 Nov 2018 11:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2018-11-23-%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E4%B8%80%E5%8F%B0%E7%94%B5%E8%84%91%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E6%88%B7%E5%85%B3%E8%81%94%E9%97%AE%E9%A2%98/</guid>
+      <description>如何解决一台电脑多个git账号关联 1.场景介绍 现在我手中一台电脑，公司用的gitlab仓库，使用的是公司邮箱注册，所以需要我本地git推送时</description>
+    </item>
+    
+    <item>
+      <title>如何在Linux服务器上安装配置go环境</title>
+      <link>http://tangmengqiu.github.io/post/2018-11-21-%E5%A6%82%E4%BD%95%E5%9C%A8linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85go%E7%8E%AF%E5%A2%83/</link>
+      <pubDate>Wed, 21 Nov 2018 11:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2018-11-21-%E5%A6%82%E4%BD%95%E5%9C%A8linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85go%E7%8E%AF%E5%A2%83/</guid>
+      <description>如何在Linux服务器上安装go环境 1 首先在这个地址找到你所需要安装的go压缩包： https://golang.org/dl/ 假如当前我想下载的包名叫做： go1.11.2.linux-amd64.tar.gz 那么在命令行中输入： sudo wget https://storage.googleapis.com/golang/go1.11.linux-amd64.tar.gz</description>
+    </item>
+    
+  </channel>
+</rss>

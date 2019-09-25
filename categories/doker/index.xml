@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>doker on 秋酱的Blog</title>
+    <link>http://tangmengqiu.github.io/categories/doker/</link>
+    <description>Recent content in doker on 秋酱的Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 14 Aug 2019 11:18:15 +0800</lastBuildDate>
+    
+	<atom:link href="http://tangmengqiu.github.io/categories/doker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>aufs和docker</title>
+      <link>http://tangmengqiu.github.io/post/2019-08-14-aufs%E5%92%8Cdocker/</link>
+      <pubDate>Wed, 14 Aug 2019 11:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2019-08-14-aufs%E5%92%8Cdocker/</guid>
+      <description>什么是aufs</description>
+    </item>
+    
+  </channel>
+</rss>
