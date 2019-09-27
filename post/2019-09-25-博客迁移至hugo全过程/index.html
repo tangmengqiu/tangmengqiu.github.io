@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-09-25T09:18:15&#43;08:00" />
 <meta itemprop="dateModified" content="2019-09-25T09:18:15&#43;08:00" />
-<meta itemprop="wordCount" content="1198">
+<meta itemprop="wordCount" content="1194">
 
 
 
@@ -131,7 +131,7 @@
         <div class="post-category">
             <a href="/categories/blog/"> blog </a>
             </div>
-          <span class="more-meta"> 1198 words </span>
+          <span class="more-meta"> 1194 words </span>
           <span class="more-meta"> 3 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -163,13 +163,14 @@
 
 <h2 id="为什么要迁移">为什么要迁移</h2>
 
-<p>之前我是从GitHub 上面fork了一份别人的仓库，然后把<code>post</code>目录下的内容一换，每次推送到GitHub上，访问 <code>https:username.github.io</code>就能看自己的博客。之前是用的<code>jekyll + github page</code>来做的博客，后来发现每次push新的代码，要等好长的时间才能看到博客更新，这个速度有点忍受不了，我自己本来也是做go开发的，所以本着对<code>hugo</code>的信任(确实构建速度是用毫秒计的），准备再折腾一番。</p>
+<p>之前我是从GitHub 上面fork了一份别人的仓库，然后把<code>post</code>目录下的内容一换，每次推送到GitHub上，访问 <code>https://username.github.io</code>就能看自己的博客。之前是用的<code>jekyll + github page</code>来做的博客，后来发现每次push新的代码，要等好长的时间才能看到博客更新，这个速度有点忍受不了，我自己本来也是做go开发的，所以本着对<code>hugo</code>的信任(确实构建速度是用毫秒计的），准备再折腾一番。</p>
 
 <h2 id="quick-start">quick start</h2>
 
 <p>直接安装hugo的二进制，初始化一个目录，非常的流畅。</p>
 
-<pre><code>#Mac的brew下载非常方便
+<pre><code>
+# Mac的brew下载非常方便
 brew new Hugo
 
 hugo new site quickstart
@@ -211,8 +212,8 @@ hugo server -D
 # 错误时终止脚本
 set -e
 
-# 删除上一次构建的打包文件夹
-rm -rf public
+# 删除打包文件夹
+#rm -rf public
 
 # 打包。even 是主题
 hugo -t even # if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`
@@ -223,7 +224,7 @@ cd public
 # 添加 readme
 echo '## Store Hugo HTML files &lt;br&gt; Blog Markdown File [https://github.com/tangmengqiu/tangmengqiu.github.io](https://github.com/tangmengqiu/tangmengqiu.github.io)' &gt; README.md
 # Add changes to git.
-git init
+#git init
 git add -A
 
 # Commit changes.
@@ -240,6 +241,7 @@ git push -f git@github.com:tangmengqiu/tangmengqiu.github.io.git master
 
 # 回到原文件夹
 cd ..
+
 </code></pre>
 
 <p>然后<code>sh deploy.sh</code> 就可以浏览器打开：<code>YourUserName.github.io</code>查看你自己的博客了。</p>

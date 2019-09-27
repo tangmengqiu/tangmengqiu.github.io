@@ -6,10 +6,19 @@
     <description>Recent content in docker on 秋酱的Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 14 Mar 2019 11:18:15 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 14 Aug 2019 11:18:15 +0800</lastBuildDate>
     
 	<atom:link href="http://tangmengqiu.github.io/categories/docker/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AUFS和docker</title>
+      <link>http://tangmengqiu.github.io/post/2019-08-14-aufs%E5%92%8Cdocker/</link>
+      <pubDate>Wed, 14 Aug 2019 11:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2019-08-14-aufs%E5%92%8Cdocker/</guid>
+      <description>什么是aufs &amp;hellip; 待续</description>
+    </item>
     
     <item>
       <title>以macOS原生docker创建k8s集群(上)</title>

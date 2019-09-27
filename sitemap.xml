@@ -128,7 +128,7 @@
   </url>
   
   <url>
-    <loc>http://tangmengqiu.github.io/categories/doker/</loc>
+    <loc>http://tangmengqiu.github.io/categories/docker/</loc>
     <lastmod>2019-08-14T11:18:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -172,13 +172,6 @@
   <url>
     <loc>http://tangmengqiu.github.io/tags/%E8%A7%A6%E5%8F%91%E5%99%A8/</loc>
     <lastmod>2019-03-23T11:18:15+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://tangmengqiu.github.io/categories/docker/</loc>
-    <lastmod>2019-03-14T11:18:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
