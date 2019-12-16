@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tools on 秋酱的Blog</title>
+    <link>http://tangmengqiu.github.io/tags/tools/</link>
+    <description>Recent content in tools on 秋酱的Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 16 Dec 2019 09:13:15 +0800</lastBuildDate>
+    
+	<atom:link href="http://tangmengqiu.github.io/tags/tools/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>终端配置代理技巧</title>
+      <link>http://tangmengqiu.github.io/post/2019-12-16-%E7%BB%88%E7%AB%AF%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E6%8A%80%E5%B7%A7/</link>
+      <pubDate>Mon, 16 Dec 2019 09:13:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2019-12-16-%E7%BB%88%E7%AB%AF%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E6%8A%80%E5%B7%A7/</guid>
+      <description>认识代理 认识代理的方式:代理是通过客户端与服务端通信,传输服务端能够访问到的资源文件,再由服务端客户端通信返回给客户端,从而间接访问服务端能</description>
+    </item>
+    
+  </channel>
+</rss>
