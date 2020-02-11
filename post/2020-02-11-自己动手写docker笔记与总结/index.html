@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>《自己动手写docker》笔记与总结 - 秋酱的Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="秋酱" /><meta name="description" content="读《自己动手写docker》笔记与总结" /><meta name="keywords" content="docker" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.1 with theme even" />
+
+
+<link rel="canonical" href="http://tangmengqiu.github.io/post/2020-02-11-%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E5%86%99docker%E7%AC%94%E8%AE%B0%E4%B8%8E%E6%80%BB%E7%BB%93/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="《自己动手写docker》笔记与总结" />
+<meta property="og:description" content="读《自己动手写docker》笔记与总结" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://tangmengqiu.github.io/post/2020-02-11-%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E5%86%99docker%E7%AC%94%E8%AE%B0%E4%B8%8E%E6%80%BB%E7%BB%93/" />
+<meta property="article:published_time" content="2020-02-11T11:18:15+08:00" />
+<meta property="article:modified_time" content="2020-02-11T11:18:15+08:00" />
+<meta itemprop="name" content="《自己动手写docker》笔记与总结">
+<meta itemprop="description" content="读《自己动手写docker》笔记与总结">
+
+
+<meta itemprop="datePublished" content="2020-02-11T11:18:15&#43;08:00" />
+<meta itemprop="dateModified" content="2020-02-11T11:18:15&#43;08:00" />
+<meta itemprop="wordCount" content="5092">
+
+
+
+<meta itemprop="keywords" content="docker,aufs,namespace,cgroup,Go," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="《自己动手写docker》笔记与总结"/>
+<meta name="twitter:description" content="读《自己动手写docker》笔记与总结"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">守护全世界最好的秋酱</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">守护全世界最好的秋酱</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">《自己动手写docker》笔记与总结</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-02-11 </span>
+        <div class="post-category">
+            <a href="/categories/docker/"> docker </a>
+            </div>
+          <span class="more-meta"> 5092 words </span>
+          <span class="more-meta"> 11 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#center-自己动手写docker-笔记与总结-center"><center>《自己动手写docker》笔记与总结</center></a>
+<ul>
+<li><a href="#1-预备的linux基础知识概念">1.预备的Linux基础知识概念</a>
+<ul>
+<li><a href="#1-1-namespace">1.1 Namespace:</a></li>
+<li><a href="#1-2-cgroup">1.2 cGroup:</a></li>
+<li><a href="#1-3-三者的关系">1.3 三者的关系：</a></li>
+<li><a href="#1-6-union-file-system">1.6 union file system</a></li>
+</ul></li>
+<li><a href="#2-docker-如何利用aufs来构建镜像">2.docker 如何利用aufs来构建镜像：</a></li>
+<li><a href="#3-构造容器">3.构造容器</a>
+<ul>
+<li><a href="#3-1-创建容器进程">3.1 创建容器进程：</a></li>
+<li><a href="#3-2-增加容器资源隔离">3.2 增加容器资源隔离：</a></li>
+<li><a href="#3-3管道通信">3.3管道通信</a></li>
+</ul></li>
+<li><a href="#4-构造镜像">4.构造镜像</a>
+<ul>
+<li><a href="#4-1-pivot-root">4.1 pivot_root:</a></li>
+<li><a href="#4-2-使用aufs-来包装-busybox">4.2 使用AUFS 来包装 busybox:</a></li>
+<li><a href="#4-3实现镜像打包">4.3实现镜像打包：</a></li>
+</ul></li>
+<li><a href="#5-容器进阶">5.容器进阶</a>
+<ul>
+<li><a href="#5-1实现容器进程后台运行">5.1实现容器进程后台运行：</a></li>
+<li><a href="#5-2-实现查看运行中的容器-mydocker-ps">5.2:实现查看运行中的容器： mydocker ps</a></li>
+<li><a href="#5-3-实现容器日志-mydocker-log">5.3:实现容器日志：mydocker log</a></li>
+<li><a href="#5-4-实现再次进入容器-docker-exec-容器名">5.4:实现再次进入容器 docker exec 容器名</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="center-自己动手写docker-笔记与总结-center"><center>《自己动手写docker》笔记与总结</center></h1>
+
+<h2 id="1-预备的linux基础知识概念">1.预备的Linux基础知识概念</h2>
+
+<h3 id="1-1-namespace">1.1 Namespace:</h3>
+
+<p>帮助进程隔离出自己单独的空间。隔离出来的命名空间中，普通用户能够具有root权限，进程隔离后，它的<code>pid</code>为1，但在原来的命名空间中，它的<code>pid</code>还是原来的<code>pid</code></p>
+
+<p>Mount Namespace ,用来隔离各个进程看到的挂载点视图，在不同namespace 的进程，看到的文件系统层次是不一样的，在Mount Namespace 中调用 mount() unmount()仅仅只会影响当前namespace 的文件系统， 对全局文件系统是没有影响的。</p>
+
+<h3 id="1-2-cgroup">1.2 cGroup:</h3>
+
+<p>帮助控制每个命名空间的大小,保证它们之间不会相互争抢,即:提供了资源限制,控制,统计的能力,这些资源包括ＣＰＵ，内存；存储，网络设备等
+Ｃgroups包含三个组件：
+* 1.cgroup:对进程分组的管理，一个CGroup包括一组进程，可以把一个subsystem的参数关联在这一组进程上。</p>
+
+<ul>
+<li><p>2.subsystem:
+资源控制模块，可以对GPU ，内存等资源进行限制。</p></li>
+
+<li><p>3.hierrachy:
+把cgroup串成一串树状结构，这个树便是hierarchy，有了hierarchy，cgroups可以做到继承</p></li>
+</ul>
+
+<h3 id="1-3-三者的关系">1.3 三者的关系：</h3>
+
+<p>系统每创建一个新的hierarchy，所有的进程都会加入到这个hierarchy的根节点上。
+一个subsystem 只会附加到一个hierarchy上。
+一个进程可以加入多个CGroup，但这些CGroup必须在不同的hierarchy</p>
+
+<p>创建一个挂载点：</p>
+
+<p><code>mkdir cgroup-test</code></p>
+
+<p>挂载一个hierarchy：</p>
+
+<p><code>sudo mount -t cgroup -o none,name = cgroup-test  cgroup-test ./cgroup-test</code></p>
+
+<p>在这个cgroup-test目录中创建子文件夹，kernel会把他看做这个hierarchy的子节点，也就是子cgroup，他会继承父节点的CGroup属性。
+在一个CGroup中加入一个进程，就是把进程id写入到这个cgroup目录下的 tasks 文件中</p>
+
+<p>docker为每个容器创建CGroup，从而对容器进行资源限制。</p>
+
+<h3 id="1-6-union-file-system">1.6 union file system</h3>
+
+<p>把其他文件系统联合到一个联合挂载点的的文件系统服务
+对这个联合的虚拟文件系统的写操作，系统是真正的写在了一个新的文件中，所以看起来这个虚拟的联合系统可以对任何文件进行写操作，但它并没有真正的改变原来的文件系统，这就是<code>写时复制</code>，
+<code>copy-on-write</code>是一种高效的资源共享方式，它的思想是：如果一个资源是重复的，但没有任何修改，这时并不需要立即创建一个新的资源， 这个资源可以被新旧实例共享。<code>创建新资源发生在第一次写操作， 也就是对资源进行修改的时候</code></p>
+
+<h2 id="2-docker-如何利用aufs来构建镜像">2.docker 如何利用aufs来构建镜像：</h2>
+
+<p>镜像层文件都存储在：<code>/var/lib/docker/aufs/diff</code> 目录下
+<code>/var/lib/docker/aufs/layers</code> 则存储着镜像是如何堆栈这些镜像层的<code>metadata</code></p>
+
+<p>在基础镜像上，提交了一个新的镜像后，
+<code>/var/lib/docker/aufs/diff</code>下会多一个新的镜像层，里面包含了新镜像相对与上一次基础镜像的不同的部分。</p>
+
+<p>docker在启动容器时，会创建一个<code>只读</code>的<code>init-layer</code>来存储容器的相关环境的内容，同时还会创建一个可写的<code>write-layer</code>来执行所有的写操作。容器退出时，这个可写层也会在<code>/var/lib/docker/aufs/diff</code> 下面，所以即使容器退出也不会丢失数据，只有容器删除时，这个层才会删除。</p>
+
+<p>创建容器后，目录：<code>/var/lib/docker/container/${container_id}</code>下存放容器的 <code>metadata</code>和<code>config</code>文件
+同时从<code>AUFS</code>角度看，<code>/sys/fs/aufs/***xxx**</code> 最后是多出的一个新的目录，里面记录了这个aufs联合文件系统中的各层的可读可写权限，只有最上层的<code>write-layer</code>才是可写的，下层的镜像文件都是只读的。</p>
+
+<p>实际操作AUFS：
+准备如下工作目录：</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/0082zybpgy1gbs5kj7itnj31de0b2die.jpg" alt="" /></p>
+
+<p>每个目录下准备几个文件：</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/0082zybpgy1gbs5nbidmzj314e046ab6.jpg" alt="" /></p>
+
+<p>注意：第一个container-layer是可写层。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/0082zybpgy1gbs5rd244hj30tk09y0tv.jpg" alt="" /></p>
+
+<p>可以看到五个目录下的文件都被挂载到挂载点mnt目录上了。
+再看系统的AUFS：</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/0082zybpgy1gbsp0idkmnj31940iin0f.jpg" alt="" /></p>
+
+<p>可以从目录 /sys/fs/aufs目录下多了一个si_43f72278adf2331a 目录，查看其中内容发现里面存了刚才的联合文件系统各目录的读写权限，只有第一个container-layer是可写的。
+此时可以把挂载点： ./mnt看做为一个单独的联合虚拟文件系统，在这里面做一些操作：
+echo -e &ldquo;\nwrite to mnts image-layer1/txt&rdquo; &gt;&gt; ./mnt/image-layer1.txt
+可以看到：</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/0082zybpgy1gbsp24m8ncj31di080dhe.jpg" alt="" /></p>
+
+<p>的确添加了一行，我们查看:</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/0082zybpgy1gbsp33mac0j310y02qdga.jpg" alt="" /></p>
+
+<p>没有改变。但此时container-layer中多了一个文件：</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/0082zybpgy1gbsp41jb9gj3132082ta9.jpg" alt="" /></p>
+
+<p>这就是 写时复制：
+当尝试向 <code>mnt/image-layer1.txt</code>文件进行写操作的时候， 系统首先在 mnt 目录下 查找名为 <code>image-layer1.txt</code> 的 文件 ，将其拷贝到 <code>read-write</code> 层的 <code>container-layer</code> 目录中，接着对 <code>container-layer</code> 目录中的 <code>image-layer1.txt</code>文件进行写操作</p>
+
+<h2 id="3-构造容器">3.构造容器</h2>
+
+<h3 id="3-1-创建容器进程">3.1 创建容器进程：</h3>
+
+<p>Linux下的/proc 目录是内核提供，他不是一个真正的文件系统，常驻内存中，包含一些系统运行时信息，比如系统内存，mount设备等信息，它以文件的形式为访问内核提供接口。
+这个目录中有许多数字，其实就是一些进程的PID，进入 <code>/proc/N</code> 目录，下面就是一些 N进程的信息。
+实现一个 <code>docker run</code> 命令。</p>
+
+<p>首先要通过我们的 mian.go 进程fork出一个子进程跑起来：</p>
+
+<pre><code>/* run */
+cmd := exec.Command(&quot;/proc/selft/exe&quot; ,args...) 
+cmd.SysProcAttr = &amp;syscall.SysProcAttr{
+    Cloneflags : syscall.CLONE_NEWUTS I syscall . CLONE_NEWPID I syscall.CLONE
+    NEWNS I syscall . CLONE
+}
+</code></pre>
+
+<p>/<em>创建一个系统调用,这个系统调用就是子进程-容器进程，子进程会自己调用自己，还给子进程传递了参数</em>/
+/*   再加载一些namespace 和输出重定向  */</p>
+
+<p>// 然后就可以让子进程跑起来
+cmd.start ()
+/* cmd.start()是运行之前创建好的系统调用 ，会创建出一个隔离了namespace的这子进程，
+这个进程会调用 /proc/self/exe 也就是自己调用自己，发送init参数，也就是调用我们那些的init方法
+来初始化容器内的一些环境 */</p>
+
+<p>这样就启动了我们的容器进程。
+然后写给子进程初始化的init方法：</p>
+
+<pre><code>/* init */
+defaultMountFlags := syscall.MS_NOEXEC I syscall.MS_NOSUID I syscall.MS_NODEV 
+syscall . Mount ( ”proc ”，” /proc ”，” proc ”， untptr(defaultMountFlags ) ，”” )
+argv := []string(command)
+syscall.Exec(command, argv, os .Environ()) 
+</code></pre>
+
+<p>容器进程在自己调用自己后，调用init：先挂载 /proc 文件系统，然后执行系统调用： syscall.Exec()
+如果没有syscall.Exec 那么容器启动后，容器内第一个进程（pid=1) ,就成了容器自己的 init 进程,而不是用户的进程（例如：bash），所以<code>syscall.Exec</code>的给魔法是：他会调用kernel的 <code>int execve( char *filename ...)</code>这个系统函数，它的作用是：执行当前filename对应的程序，然后覆盖当前进程的镜像、堆栈、数据、pid也都会被将要运行的进程所替换。
+所以：
+<code>./mydocker run -ti /bin/sh</code>  指定用户运行命令<code>/bin/sh</code>
+进入容器后：<code>ps -ef</code>会发现： <code>pid : /bin/sh =1 ,ps -ef =5?</code></p>
+
+<h3 id="3-2-增加容器资源隔离">3.2 增加容器资源隔离：</h3>
+
+<p>以内存（memory）限制的subsystem创建为例：
+首先应找到当前subsystem在虚拟文件系统中的hierarchy的路径：
+可以查询文件： <code>/proc/self/mountinfo</code> 文件，其中有一行：
+<code>30 27 0:24 / /sys/fs/cgroup/memory rw,nosuid,nodev,noexec,relatime shared:l3 - cgroup cgroup rw , memory</code></p>
+
+<p>其中：
+option,表示挂载的subsystem类型是：memory，</p>
+
+<p>cgroup 的hierarchy是通过 例如：<code>sudo mount -t cgroup -o none,name = cgroup-test  cgroup-test ./cgroup-test</code>
+以cgroup类型文件挂载上去的。</p>
+
+<p>挂载memory 的subsystem的hierarchy在虚拟文件系统的绝对路径。</p>
+
+<p>那么在 <code>/sys/fs/cgroup/memory</code>中创建文件夹，对应创建的cgroup， 就可以用来做内存的限制，
+具体方法为：
+读入<code>/proc/self/mountinfo</code> 文件，然后逐行检查最后一个 ，分割开的string 如：memory 是否与当前想要检测的subsystem 字符串相同，若相同，则取该行的第四个字符串也就是该subsystem 挂载的group的根目录：cgroupRoot</p>
+
+<p>在cgroupRoot 目录下创建mydocker-cgroup 子目录，来创建新的group，然后把 我们的内存限制写在这个目录下的 <code>memory.limits_in_bytes</code>文件中，再把当前进程的id(父进程（main.go)的id)写在 tasks文件中，就实现了对容器进程的内存资源限制。
+注意，cgroup操作的 进程对象是mydocker进程，操作的cgroup目录是宿主机的目录</p>
+
+<h3 id="3-3管道通信">3.3管道通信</h3>
+
+<p>为了方便父进程mydocker和子进程 容器进程之间传递参数和解析，使用一个半双工的管道，父进程在写端写入参数命令，子进程在读端读入并解析。
+在创建子进程系统调用时：增加了：</p>
+
+<pre><code>readPipe, writePipe, err := NewPipe ()
+
+cmd := exec.Command(”/proc/self/exe”, ”init”)
+cmd.ExtraFiles = []*os . File{ readPipe }
+</code></pre>
+
+<p>即将读端的句柄传入子进程系统调用，等子进程执行时，就可以读了 。</p>
+
+<h2 id="4-构造镜像">4.构造镜像</h2>
+
+<p>镜像其实就是一个文件系统，docker 通过 docker export将镜像打成tar 包</p>
+
+<h3 id="4-1-pivot-root">4.1 pivot_root:</h3>
+
+<p>一个系统调用，目的是改变当前的root文件系统；
+可以将当前进程的root 文件系统移动到： put_old,然后使new_root成为新的root文件系统。
+使整个系统都切换到新的root文件系统，移除对以前文件系统的依赖，然后就可以unmount 原来的root文件系统了。
+实现：
+* 1.在当前目录创建 put_old目录，
+* 2.pivotRoot( $PWD ,putold) ,使得整个系统root切换到当前目录，然后将之前系统的root放到put_old中
+* 3.cd / &amp;&amp; unmount(put_old） ，当前工作切换到根目录，并unmount原来的root系统。</p>
+
+<p>实现容器进程的系统调用时设置： cmd.Dir = /root/busybox ，指定子进程的工作目录，这个目录就成了容器进程的root。</p>
+
+<h3 id="4-2-使用aufs-来包装-busybox">4.2 使用AUFS 来包装 busybox:</h3>
+
+<p>前一节中使用宿主机/root/busybox 目录作为文件的根目录，但在容器内对文 件的操作仍然会直接影响到宿主机的/root/busybox 目录，现在要实现容器与镜像的隔离，使得容器的操作不会对镜像产生任何影响：
+三步：
+CreateReadOnlyLayer ：新建 busybox 文件夹，将 busybox.tar解压到 busybox 目录下， 作为容器的只读层
+CreateWriteLayer：建了一个名为 writeLayer的文件夹，作为容器唯一的可写层
+CreateMountPoint：首先创建了/root/ mnt 文件夹，作为挂载点，然后把 writeLayer 目录和 busybox 目录 mount （-t aufs) 到/root/ mnt 目录下。</p>
+
+<p>这样 /root/mnt目录就是容器使用的宿主机的目录，作为容器的工作目录。</p>
+
+<h3 id="4-3实现镜像打包">4.3实现镜像打包：</h3>
+
+<p>commit命令的任务就是，把容器运行状态的内容保存成镜像存储下来，所以就是把当前目录打一个tar包</p>
+
+<h2 id="5-容器进阶">5.容器进阶</h2>
+
+<h3 id="5-1实现容器进程后台运行">5.1实现容器进程后台运行：</h3>
+
+<p>容器从操作系统角度来看，就是一个进程，他是从宿主机的mydocker进程fork出来的子进程。父进程和子进程是异步的运行关系，即父进程不知道子进程什么时候退出，当父进程退出后，为了使得子进程无故占用资源而变成孤儿进程，pid=1的init进程便会接管这个孤儿进程。
+如果是 -it模式，父进程创建好子进程后，parent.wait() 等待子进程结束 ，如果是 -d 则直接退出。</p>
+
+<h3 id="5-2-实现查看运行中的容器-mydocker-ps">5.2:实现查看运行中的容器： mydocker ps</h3>
+
+<p>在run 函数中，将容器的名字和pid，运行状态等信息记录下来，记录在 /var/run/mydocker/CONTAINER_NAME/config.json  文件中。
+mydocker ps 时就将所有的config文件读入，然后反序列化处理后定向到标准输出。</p>
+
+<h3 id="5-3-实现容器日志-mydocker-log">5.3:实现容器日志：mydocker log</h3>
+
+<p>将容器进程的标准输出挂载到“/var/run/mydocker/容器名/container.log，，文件中， 这样就可以在调用 mydocker logs 的时候去读取这个文件，并将进程内的标准输出打印出来</p>
+
+<h3 id="5-4-实现再次进入容器-docker-exec-容器名">5.4:实现再次进入容器 docker exec 容器名</h3>
+
+<p>如果以-d模式运行，我们还不能在宿主机中再次进入容器的运行环境中。</p>
+
+<p>setns是一个系统调用，可以根据提供的 PID再次进入到指定的 Namespace 中。它需要先 打开/proc/[pid]/ns/文件夹下对应的文件，然后使当前进程进入到指定的 Namespace 中
+如果是c语言则很好调用这个setns ，但是go语言有点麻烦，要用到CGO
+C函数会在所有的GO运行环境前执行，但是不是 mydocker exec命令的情况下也会执行，所以这里有一点trick：
+在execContainer时，mydocker 进程生成了一个子进程系统调用：</p>
+
+<p><code>cmd := exec.Command(”/proc/self/exe”,”exec”)</code></p>
+
+<p>/* 这里和 mydocker run的地方有点像，不过是把 init 换成了 exec ,init时会去执行我们的init函数，实现 容器的初始化，exec会去执行那段C代码*/</p>
+
+<p>为了不让C代码每次都调用，在cmd.run之前，要先设置两个环节变量：</p>
+
+<pre><code>os.Setenv(ENV_EXEC_PID, pid) 
+os.Setenv(ENV EXEC CMD, cmdStr)
+</code></pre>
+
+<p>注意的是，在main.go启动之前，c代码就会启动一次，所以在C代码的最前面应该对这个两个环境变量进行检查，如果没有设置，说明不是exec 那么直接return掉，不执行后面的 setns调用。
+ 所以cmd.run（） 后，会再次执行 C代码，这次已经设置了两个环节变量，所以c代码后面的逻辑会执行：
+根据想要进入的容器的pid  在 <code>/proc/$PID/ns/namespace[]</code> 中去读取五种namespace然后进入容器进程。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">秋酱</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-02-11
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/weixin-qrcode.png">
+        <span>wechat</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/alipay.png">
+        <span>alipay</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/docker/">docker</a>
+          <a href="/tags/aufs/">aufs</a>
+          <a href="/tags/namespace/">namespace</a>
+          <a href="/tags/cgroup/">cgroup</a>
+          <a href="/tags/go/">Go</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/2019-12-16-%E7%BB%88%E7%AB%AF%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E6%8A%80%E5%B7%A7/">
+            <span class="next-text nav-default">终端配置代理技巧</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="comments-gitment"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitment = new Gitment({
+        id: '2020-02-11 11:18:15 \x2b0800 CST',
+        title: '《自己动手写docker》笔记与总结',
+        link: decodeURI(location.href),
+        desc: '《自己动手写docker》笔记与总结 1.预备的Linux基础知识概念 1.1 Namespace: 帮助进程隔离出自己单独的空间。隔离出来的命名空间中，普通用户能够具有',
+        owner: 'tangmengqiu',
+        repo: 'bloggitcomment',
+        oauth: {
+          client_id: '69ba0036f6b242f8b964',
+          client_secret: '2f11bca7eb0ffc94c2f90610d5c023442a0401e1'
+        }
+      });
+      gitment.render('comments-gitment');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:sctmq@zju.edu.cn" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/tangmengqiu" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.zhihu.com/people/tang-meng-qiu-75/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://space.bilibili.com/102311033" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://tangmengqiu.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> site pv: <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> site uv: <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tmq</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
