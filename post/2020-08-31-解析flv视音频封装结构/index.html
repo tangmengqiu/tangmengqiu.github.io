@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>音视频技术以及FLV封装格式详解 - 秋酱的Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="秋酱" /><meta name="description" content="剖析FLV的内部结构" /><meta name="keywords" content="FLV" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.1 with theme even" />
+
+
+<link rel="canonical" href="http://tangmengqiu.github.io/post/2020-08-31-%E8%A7%A3%E6%9E%90flv%E8%A7%86%E9%9F%B3%E9%A2%91%E5%B0%81%E8%A3%85%E7%BB%93%E6%9E%84/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="音视频技术以及FLV封装格式详解" />
+<meta property="og:description" content="剖析FLV的内部结构" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://tangmengqiu.github.io/post/2020-08-31-%E8%A7%A3%E6%9E%90flv%E8%A7%86%E9%9F%B3%E9%A2%91%E5%B0%81%E8%A3%85%E7%BB%93%E6%9E%84/" />
+<meta property="article:published_time" content="2020-08-31T11:18:15+08:00" />
+<meta property="article:modified_time" content="2020-08-31T11:18:15+08:00" />
+<meta itemprop="name" content="音视频技术以及FLV封装格式详解">
+<meta itemprop="description" content="剖析FLV的内部结构">
+
+
+<meta itemprop="datePublished" content="2020-08-31T11:18:15&#43;08:00" />
+<meta itemprop="dateModified" content="2020-08-31T11:18:15&#43;08:00" />
+<meta itemprop="wordCount" content="1855">
+
+
+
+<meta itemprop="keywords" content="flv," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="音视频技术以及FLV封装格式详解"/>
+<meta name="twitter:description" content="剖析FLV的内部结构"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">守护全世界最好的秋酱</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">守护全世界最好的秋酱</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">音视频技术以及FLV封装格式详解</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-08-31 </span>
+        <div class="post-category">
+            <a href="/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%8A%80%E6%9C%AF/"> 音视频技术 </a>
+            </div>
+          <span class="more-meta"> 1855 words </span>
+          <span class="more-meta"> 4 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#center-音视频技术及解析flv封装格式-center"><center> 音视频技术及解析FLV封装格式 </center></a>
+<ul>
+<li><a href="#1-播放网络视频的流程">1.播放网络视频的流程</a></li>
+<li><a href="#2-flv-详解">2.FLV 详解</a>
+<ul>
+<li><a href="#2-1header">2.1header</a></li>
+</ul></li>
+<li><a href="#2-2-body">2.2 body</a>
+<ul>
+<li><a href="#script-tag">script tag</a></li>
+<li><a href="#audio-tag">audio tag</a></li>
+<li><a href="#video-tag">video tag</a></li>
+</ul></li>
+<li><a href="#总结">总结</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="center-音视频技术及解析flv封装格式-center"><center> 音视频技术及解析FLV封装格式 </center></h1>
+
+<h2 id="1-播放网络视频的流程">1.播放网络视频的流程</h2>
+
+<p>要从网络上播放一个视频，大致流程如下：</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gia9ebr6ugj309o0cfdhk.jpg" alt="" /></p>
+
+<p>可见，一个网络视频从网络传输和播放这个过程，经过了如下一些过程：</p>
+
+<ol>
+<li><p>首先最上面的数据，是从互联网上接受的流媒体数据，所以：</p>
+
+<pre><code>解协议:
+stream media data  --&gt; 封装格式数据 （eg. FLV） 
+</code></pre>
+
+<p>常见的封装的流式数据格式有以下：</p></li>
+
+<li><p>FLV</p></li>
+
+<li><p>MP4</p></li>
+
+<li><p>MKV</p></li>
+
+<li><p>AVI
+等等</p></li>
+
+<li><p>解封装，将音频和视频数据分开</p>
+
+<pre><code>解封装
+封装格式数据（eg FLV） -——&gt;  音频压缩编码数据(ACC) + 视频压缩编码数据 （eg H.264）
+
+</code></pre></li>
+
+<li><p>解码
+这一环是非常重要的，原生的图像和声音数据，如果不经过压缩编码，数据量会非常庞大，所以，解码就是从压缩的数据中，还原声音和图像的原始数据。</p>
+
+<pre><code>解码：
+压缩格式数据（eg H.264） --&gt;  非压缩颜色数据 （eg.YUV420P）
+</code></pre></li>
+
+<li><p>最后根据封装模块的参数信息，同步解码出来的视频和音频数据，分别送到显卡和声卡播放出来</p></li>
+</ol>
+
+<h2 id="2-flv-详解">2.FLV 详解</h2>
+
+<p>首先，FLV作为一种流媒体数据格式，非常适合在网络上传输，它内部结构大致如下：</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gia9pofqgtj30aq0cxgoe.jpg" alt="" /></p>
+
+<p>即： FLV = Header + Body
+    Body= PreviousTagSize (4bytes) + Tag</p>
+
+<h3 id="2-1header">2.1header</h3>
+
+<p>Signature(3 Byte)+Version(1 Byte)+Flags(1 Bypte)+DataOffset(4 Byte)</p>
+
+<ul>
+<li>signature 占3个字节
+固定FLV三个字符作为标示。一般发现前三个字符为FLV时就认为他是flv文件。</li>
+<li>Version 占1个字节 标示FLV的版本号。这里我们看到是1</li>
+<li>Flags 占1个字节
+内容标示。第0位和第2位,分别表示 video 与 audio 存在的情况.(1表示存在,0表示不存在)</li>
+<li>DataOffset 4个字节
+表示FLV的header长度。这里可以看到固定是9</li>
+</ul>
+
+<h2 id="2-2-body">2.2 body</h2>
+
+<p>FLV的body部分是由一系列的back-pointers + tag构成
+tag 的组成：</p>
+
+<p><code>tag type + tag data size + Timestamp + TimestampExtended + stream id + tag data</code></p>
+
+<ul>
+<li>type 1个字节。8为Audio,9为Video,18为scripts</li>
+<li>tag data size 3个字节。表示tag data的长度。从streamd id 后算起。</li>
+<li>Timestreamp 3个字节。时间戳</li>
+<li>TimestampExtended 1个字节。时间戳扩展字段</li>
+<li>stream id 3个字节。总是0</li>
+<li>tag data 数据部分</li>
+</ul>
+
+<h3 id="script-tag">script tag</h3>
+
+<p>脚本Tag一般只有一个，是flv的第一个Tag，用于存放flv的信息，比如duration、audiodatarate、creator、width等
+一般包含了两个amf包，数据的格式都是：</p>
+
+<p><code>数据类型+（数据长度）+数据</code></p>
+
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1giaa3wnanaj30ar014t8s.jpg" alt="" /></p>
+
+<p>第一个AMF包：
+第1个字节表示AMF包类型，一般总是0x02，表示字符串。第2-3个字节为UI16类型值，标识字符串的长度，一般总是0x000A（“onMetaData”长度）。后面字节为具体的字符串，一般总为“onMetaData”（6F,6E,4D,65,74,61,44,61,74,61）</p>
+
+<p>第二个AMF包：
+第1个字节表示AMF包类型，一般总是0x08，表示数组。第2-5个字节为UI32类型值，表示数组元素的个数。后面即为各数组元素的封装，数组元素为<code>元素名称和值</code>组成的对。常见的数组元素如下表所示:</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1giaaa76ychj307m0grwf5.jpg" alt="" /></p>
+
+<h3 id="audio-tag">audio tag</h3>
+
+<p>音频Tag Data区域开始的第一个字节包含了音频数据的参数信息，从第二个字节开始为音频流数据。结构如下：
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1giaac1cw50j30h002daal.jpg" alt="" /></p>
+
+<p>第一个字节包含参数信息，前4位是音频格式，5-8位分别表示了采样率、采样精度、音频声道信息，各个位表示情况如下：
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1giaaejvzv2j30i90lz407.jpg" alt="" /></p>
+
+<p>第二个字节开始为音频数据。</p>
+
+<h3 id="video-tag">video tag</h3>
+
+<p>视频Tag Data开始的第一个字节包含视频数据的参数信息，从第二个字节开始为视频流数据。结构如下：
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1giaafo75moj30f202x74k.jpg" alt="" /></p>
+
+<p>参数信息对应如下：
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1giaagc50wqj30i70cfab3.jpg" alt="" /></p>
+
+<p>后面接着的就是视频数据。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1giaahn1n76j30gu02lmx7.jpg" alt="" />
+是一段以字节对齐的流数据，具体怎么构成要看第一个字节中的编码格式，这里着重介绍下 AVC VIDEO PACKET：
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1giaajdc7k8j30gy081aaq.jpg" alt="" /></p>
+
+<ul>
+<li>关于CTS：这是一个比较难以理解的概念，需要和pts，dts配合一起理解。</li>
+<li>首先，pts（presentation time stamps），dts(decoder timestamps)，cts(CompositionTime)的概念：</li>
+<li>pts：显示时间，也就是接收方在显示器显示这帧的时间。单位为1/90000 秒。</li>
+<li>dts：解码时间，也就是rtp包中传输的时间戳，表明解码的顺序。单位单位为1/90000 秒。——根据后面的理解，pts就是标准中的CompositionTime</li>
+<li>cts偏移：cts = (pts - dts) / 90 。cts的单位是毫秒。
+pts和dts的时间不一样，应该只出现在含有B帧的情况下，也就是profile main以上。baseline是没有这个问题的，baseline的pts和dts一直相同，所以cts一直为0。</li>
+</ul>
+
+<h2 id="总结">总结</h2>
+
+<p>总的来说，FLV是一种结构清晰的流媒体格式，在接收到数据后，总是可以根据每一段的最前面（header) 部分，得知后面紧跟的数据如何展开，例如，对每一个TAG，可以知道它是音频视频还是脚本，再根据其长度，可以找到数据结尾的偏置值。然后再对tag data展开时，又可以根据第一个字节找到其类型，根据该类型的指定格式进行解码等操作。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">秋酱</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-08-31
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/weixin-qrcode.png">
+        <span>wechat</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/alipay.png">
+        <span>alipay</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/flv/">flv</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/2020-02-11-%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E5%86%99docker%E7%AC%94%E8%AE%B0%E4%B8%8E%E6%80%BB%E7%BB%93/">
+            <span class="next-text nav-default">《自己动手写docker》笔记与总结</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="comments-gitment"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitment = new Gitment({
+        id: '2020-08-31 11:18:15 \x2b0800 CST',
+        title: '音视频技术以及FLV封装格式详解',
+        link: decodeURI(location.href),
+        desc: '音视频技术及解析FLV封装格式 1.播放网络视频的流程 要从网络上播放一个视频，大致流程如下： 可见，一个网络视频从网络传输和播放这个过程，经过了',
+        owner: 'tangmengqiu',
+        repo: 'bloggitcomment',
+        oauth: {
+          client_id: '69ba0036f6b242f8b964',
+          client_secret: '2f11bca7eb0ffc94c2f90610d5c023442a0401e1'
+        }
+      });
+      gitment.render('comments-gitment');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:sctmq@zju.edu.cn" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/tangmengqiu" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.zhihu.com/people/tang-meng-qiu-75/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://space.bilibili.com/102311033" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://tangmengqiu.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> site pv: <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> site uv: <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tmq</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

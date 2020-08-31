@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>tmq</copyright>
-    <lastBuildDate>Tue, 11 Feb 2020 11:18:15 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 31 Aug 2020 11:18:15 +0800</lastBuildDate>
     
 	<atom:link href="http://tangmengqiu.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>flv</title>
+      <link>http://tangmengqiu.github.io/tags/flv/</link>
+      <pubDate>Mon, 31 Aug 2020 11:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/tags/flv/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>aufs</title>
@@ -108,15 +117,6 @@
       <pubDate>Sat, 23 Mar 2019 11:18:15 +0800</pubDate>
       
       <guid>http://tangmengqiu.github.io/tags/%E8%A7%A6%E5%8F%91%E5%99%A8/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>k8s</title>
-      <link>http://tangmengqiu.github.io/tags/k8s/</link>
-      <pubDate>Thu, 14 Mar 2019 11:18:15 +0800</pubDate>
-      
-      <guid>http://tangmengqiu.github.io/tags/k8s/</guid>
       <description></description>
     </item>
     

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>flv on 秋酱的Blog</title>
+    <link>http://tangmengqiu.github.io/tags/flv/</link>
+    <description>Recent content in flv on 秋酱的Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>tmq</copyright>
+    <lastBuildDate>Mon, 31 Aug 2020 11:18:15 +0800</lastBuildDate>
+    
+	<atom:link href="http://tangmengqiu.github.io/tags/flv/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>音视频技术以及FLV封装格式详解</title>
+      <link>http://tangmengqiu.github.io/post/2020-08-31-%E8%A7%A3%E6%9E%90flv%E8%A7%86%E9%9F%B3%E9%A2%91%E5%B0%81%E8%A3%85%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Mon, 31 Aug 2020 11:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2020-08-31-%E8%A7%A3%E6%9E%90flv%E8%A7%86%E9%9F%B3%E9%A2%91%E5%B0%81%E8%A3%85%E7%BB%93%E6%9E%84/</guid>
+      <description>音视频技术及解析FLV封装格式 1.播放网络视频的流程 要从网络上播放一个视频，大致流程如下： 可见，一个网络视频从网络传输和播放这个过程，经过了</description>
+    </item>
+    
+  </channel>
+</rss>
