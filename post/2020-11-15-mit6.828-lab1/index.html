@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>mit6.828 lab1 - 秋酱的Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="秋酱" /><meta name="description" content="大名鼎鼎的6.828，第一个lab" /><meta name="keywords" content="os" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.1 with theme even" />
+
+
+<link rel="canonical" href="http://tangmengqiu.github.io/post/2020-11-15-mit6.828-lab1/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="mit6.828 lab1" />
+<meta property="og:description" content="大名鼎鼎的6.828，第一个lab" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://tangmengqiu.github.io/post/2020-11-15-mit6.828-lab1/" />
+<meta property="article:published_time" content="2020-11-15T11:18:15+08:00" />
+<meta property="article:modified_time" content="2020-11-15T11:18:15+08:00" />
+<meta itemprop="name" content="mit6.828 lab1">
+<meta itemprop="description" content="大名鼎鼎的6.828，第一个lab">
+
+
+<meta itemprop="datePublished" content="2020-11-15T11:18:15&#43;08:00" />
+<meta itemprop="dateModified" content="2020-11-15T11:18:15&#43;08:00" />
+<meta itemprop="wordCount" content="3065">
+
+
+
+<meta itemprop="keywords" content="os," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="mit6.828 lab1"/>
+<meta name="twitter:description" content="大名鼎鼎的6.828，第一个lab"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">守护全世界最好的秋酱</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">守护全世界最好的秋酱</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">mit6.828 lab1</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-15 </span>
+        <div class="post-category">
+            <a href="/categories/os/"> os </a>
+            </div>
+          <span class="more-meta"> 3065 words </span>
+          <span class="more-meta"> 7 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#center-mit6-828-lab1-booting-a-pc-center"><center> mit6.828 lab1:Booting a PC </center></a>
+<ul>
+<li><a href="#1-为什么要学习这门课程">1.为什么要学习这门课程</a></li>
+<li><a href="#2-environment-setup">2.environment setup</a></li>
+<li><a href="#2-物理内存地址结构">2.物理内存地址结构</a></li>
+<li><a href="#3-boot-loader">3.boot loader</a></li>
+<li><a href="#4-kernel">4.kernel</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="center-mit6-828-lab1-booting-a-pc-center"><center> mit6.828 lab1:Booting a PC </center></h1>
+
+<h2 id="1-为什么要学习这门课程">1.为什么要学习这门课程</h2>
+
+<p>刚刚经历过秋招，深刻感觉到自己计算机知识还不够扎实。尽管也能拿到好几个大厂offer，但扪心自问，很多os的设计理念和原理，我只能从书本上抽象的概念复读背诵，难以窥探操作系统内核的奥妙。其实早已听说这门大名鼎鼎的课程，其lab做下来应该会是收获颇丰。
+<a href="https://pdos.csail.mit.edu/6.828/2018/schedule.html">课程地址</a>
+然后找到lab1的作业，跟着完成12个exercise就是lab1的内容了。</p>
+
+<h2 id="2-environment-setup">2.environment setup</h2>
+
+<p>我的是Mac环境，操作比较简单，需要注意的是，qemu一定是安装课程网址上提供补丁版本的qemu,否则后面的一些lab会出问题。
+主要参考了：<a href="https://blog.zzhou612.com/2019/03/09/mit-6-828-toolchains-setup-on-macos/">博客</a></p>
+
+<p>但在执行第二行命令会卡死，也就是安装6828自己打补丁版本的qemu失败，所以我直接下载了该课程给出的qemu源码编译：</p>
+
+<pre><code>brew install $(brew deps qemu)
+PATH=${PATH}:/usr/local/opt/gettext/bin make install
+git clone https://github.com/mit-pdos/6.828-qemu.git qemu
+./configure --disable-kvm --disable-werror --disable-sdl
+make &amp;&amp; make install
+</code></pre>
+
+<p>然后用第一个博客里的方法安装其他几个工具链中的tools</p>
+
+<p>最后把<code>/usr/local/bin下的 i386***-gdb</code> 简化名字为<code>gdb</code>，否则<code>make gdb</code>的时候会找不到可执行文件</p>
+
+<h2 id="2-物理内存地址结构">2.物理内存地址结构</h2>
+
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gjzqgujd8gj30r80sewgr.jpg" alt="" /></p>
+
+<p>最早的芯片，只支持1MB的物理内存，也即 <code>0x00000000 - 0x 000fffff</code>地址之间，最低的640kb叫做low mem,作为最早的pc可以使用的ram。<code>0x000A000 至0x0010000</code>之间这384作为视频播放的缓冲区或者固件占用的内存。</p>
+
+<p>随着芯片的发展，可以支持4Gb以上的物理内存，为了能够向前兼容，也保留了前1MB的设计格式不变。所以，物理内存就出现了一个&rdquo;hole&rdquo;（<code>0x000A000 - 0x0010000</code>）把ram分为了两部分（前640KB+extended mem)</p>
+
+<p><code>CS</code>为代码段寄存器，<code>IP</code>为指令指针寄存器，从名称上我们可以看出它们和指令的关系。</p>
+
+<p>在8086PC机中，任意时刻，设CS中的内容为Ｍ，IP中的内容为Ｎ，8086CPU将从内存<code>M*16+N</code>单元开始，读取一条指令并执行。</p>
+
+<p>开机的过程：
+1. PC通电后会设置CS为0xf000，IP为0xfff0，第一条指令会在物理内存0xffff0处，该地址位于BIOS区域的尾部。该条指令为<code>ljmp $0xf000,$0xe05b</code>跳转到BIOS的前半部分：<code>0xfe05b</code> 处,这里开始执行的指令就是bios做一些初始化操作：检测各种底层的设备，比如时钟，GDTR寄存器。以及设置中断向量表，然后找到一个可以boot的磁盘，load进物理地址为：<code>0x7c00 to 0x7dff</code>  的位置，然后设置两个寄存器:<code>CS:IP to 0000:7c00</code> ，将控制权交给boot loader</p>
+
+<ol>
+<li><p>boot loader，主要包含了两个文件：<code>/boot/boot.S</code> 和<code>/boot/main.c</code> ，boot loader 做两件事：</p>
+
+<ul>
+<li><p>从 real mode 切换到 32-bit  protected mode(boot.s)</p></li>
+
+<li><p>通过一些io指令，从磁盘上读取kernel(boot/main.c)</p></li>
+</ul></li>
+
+<li><p>控制权交给了kernel，kernel开始执行一些任务</p></li>
+</ol>
+
+<h2 id="3-boot-loader">3.boot loader</h2>
+
+<p>boot loader的主要两个作用，上一节一级阐述过，首先，boot loader的代码指令被加载到了<code>0x7c00</code>开始的位置，练习三的任务，就是在gdb中，深入boot loader 两个代码文件中追踪指令的执行，思考每一条指令的意义，所以第一个点断设置在0x7c00。需要注意的是，在boot loader代码指令执行期间，栈的起始地址，是<code>0x7c00</code>，然后向低地址增长，所以在调试boot loader的过程中，可以一直手动模拟这个栈:</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkqtyboa46j309m0taq4f.jpg" alt="" />
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkqtysevxuj30980ucgnd.jpg" alt="" />
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkqtz4aaqaj309y082glp.jpg" alt="" /></p>
+
+<p>总结一下，栈的生长过程是：调用某个函数，会先保存调用返回的下一条指令的地址，然后将参数按照倒序压栈，进入该函数后，先保存<code>ebp</code>的值，然后把调用过程中会使用到的<code>调用者保存寄存器</code>的值压栈，后面就是处理该调用的逻辑。</p>
+
+<p>在读取内核文件到物理地址<code>0x100000</code>的过程中，首先要正确认识到ELF文件的格式：
+<img src="/Users/tangmengqiu/Library/Application Support/typora-user-images/image-20201114155145012.png" alt="image-20201114155145012" /></p>
+
+<pre><code># boot/main.c
+    struct Proghdr *ph, *eph;
+
+	// read 1st page off disk
+	readseg((uint32_t) ELFHDR, SECTSIZE*8, 0);
+    //ELFHDR = 0x10000 
+	// is this a valid ELF?
+	if (ELFHDR-&gt;e_magic != ELF_MAGIC)
+		goto bad;
+
+	// load each program segment (ignores ph flags)
+	ph = (struct Proghdr *) ((uint8_t *) ELFHDR + ELFHDR-&gt;e_phoff); // 计算program header 的地址= 起始地址+ offset
+   
+	eph = ph + ELFHDR-&gt;e_phnum;
+    // end of program header ,终点位置，说白了，就是计算出program header table 的起始和终点位置，然后遍历这个表中的每一个表项。
+	for (; ph &lt; eph; ph++)
+		// p_pa is the load address of this segment (as well
+		// as the physical address)
+		readseg(ph-&gt;p_pa, ph-&gt;p_memsz, ph-&gt;p_offset);
+        // p_pa就是该段的`LMA`，并且是物理地址，因为现在虚拟内存还未开启。
+
+</code></pre>
+
+<hr />
+
+<h2 id="4-kernel">4.kernel</h2>
+
+<p>首先回忆一下，boot loader将kernel 加载到了物理地址 <code>0x00100000</code>位置，也就是第一张图中，BIOS 后面的地址位置。但为了方便程序员写代码，os的虚拟内存系统，会将kernel 映射到虚拟内存的高地址上，而用户代码起始执行位置从低地址开始。</p>
+
+<p>目前只需要映射4MB内存： <code>虚拟地址0xf0000000 - 0xf0400000 到 物理地址 0x00000000 - 0x00400000</code>.这个映射表是手写的，存在：<code>kern/entrypgdir.c</code>
+接下来两步：
+1. 将entry_pgdir 的地址加载至寄存器：cr3
+2. 将 寄存器cr0置1,标志着虚拟内存的开始，以后使用的地址都是虚拟地址</p>
+
+<p><code>exercise 8</code> 是本lab第一次要写代码，这节的任务主要就是滤清c语言的printf，将数据格式化打印到控制台的原理。</p>
+
+<p><code>vprintfmt</code>函数中，就是处理格式化输出，以c语言中的<code>printf(&quot;hello: %4d，%8d&quot;,1001,1010)</code> ，fmt即为hello: %4d，ap中包含了两个参数：1001、1010,首先会原样输出fmt中，第一个%前的所有字符，然后处理格式化输出，计算输出宽度和格式，然后根据不同的格式，例如十进制，八进制等，计算<code>base=?</code>，处理有符号数的符号等等，最后调用printnum(是数字的话)。</p>
+
+<p><code>exercise 9</code>,观察stack。</p>
+
+<p>进入entry后，一开始是没有对%esp %ebp寄存器进行修改的，知道进入<code>i386_init</code>以前，说明设置系统堆栈的是这两句：</p>
+
+<pre><code>movl    $0x0,%ebp            # nuke frame pointer
+movl    $(bootstacktop),%esp
+</code></pre>
+
+<p>进入gdb进行调试：</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkqxm9fdl0j30oo0d0gom.jpg" alt="" /></p>
+
+<p>可见，初始化stack时，将栈顶指向了:<code>0xf0110000</code>,注意，在数据段中定义栈顶bootstacktop之前，首先分配了KSTKSIZE这么多的存储空间，专门用于堆栈，这个<code>KSTKSIZE = 8 * PGSIZE  = 8 * 4096 = 32KB</code>。所以用于堆栈的地址空间为 0xf0108000-0xf0110000，其中栈顶指针指向0xf0110000. 那么这个堆栈实际坐落在内存的 0x00108000-0x00110000物理地址空间中。</p>
+
+<p><code>exercise 10</code>就是观察递归调用函数时，如何保存返回地址，压入参数，保存调用者保存寄存器。</p>
+
+<p><code>exercise 11</code>
+接下来，要理解指针的意义，和对其进行加减操作，解引用操作等。然后完成monitor.c代码中，输出相应数据。
+来看看需要输出哪些数据吧：</p>
+
+<pre><code>Stack backtrace: (这个简单，直接cprintf)
+  ebp f0109e58  eip f0100a62  args 00000001 f0109e80 f0109e98 f0100ed2 00000031
+  ebp f0109ed8  eip f01000d6  args 00000000 00000000 f0100058 f0109f28 00000061
+</code></pre>
+
+<p>ebp eip寄存器的值在哪呢？首先，已经写好了一个 read_ebp()函数给我们使用，那么显然可以读到ebp的值，对其解引用会得到ebp寄存器指向内存堆栈的位置，该位置即为上一层调用的esp栈顶的位置，所以对其+1,就是eip的值，接下来就是五个参数的值。</p>
+
+<p><code>exercise 12</code> 更进一步，打印调试信息。</p>
+
+<pre><code># kdebug.c
+// Your code here.
+	stab_binsearch(stabs,&amp;lline,&amp;rline,N_SLINE,addr);
+	if(lline&lt;=rline){
+		info-&gt;eip_line=stabs[lline].n_desc;
+	}else{
+		info-&gt;eip_line = -1;
+	}
+</code></pre>
+
+<p>这里我是根据上下文的代码猜的，多试了几次就对了，首先二分查找行号，第四个参数，根据注释<code>//text segment line number</code>可以猜到，然后如果查找到了，就把该行的某个字段赋予eip_line，这里我猜了几次，我一开始用的是value字段，结果不对，后来网上看了别人的代码，改成了正确的。这里还有个坑人的是，注释中写了一句：<code>If found, set info-&gt;eip_line to the right line number.</code> 结果right line 的答案一直通不过，我改了lline 就过了.</p>
+
+<p>所有代码写好后，命令行中： <code>make grade</code> 就是对整个lab1的code进行测试：</p>
+
+<p><img src="http://ww1.sinaimg.cn/large/006AK9Vqly1gkqz1ivspkj30we0pkn0h.jpg" alt="image.png" /></p>
+
+<p>全部通过的话就会是以上结果。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">秋酱</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-11-15
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/weixin-qrcode.png">
+        <span>wechat</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/alipay.png">
+        <span>alipay</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/os/">os</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/2020-08-31-%E8%A7%A3%E6%9E%90flv%E8%A7%86%E9%9F%B3%E9%A2%91%E5%B0%81%E8%A3%85%E7%BB%93%E6%9E%84/">
+            <span class="next-text nav-default">音视频技术以及FLV封装格式详解</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="comments-gitment"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitment = new Gitment({
+        id: '2020-11-15 11:18:15 \x2b0800 CST',
+        title: 'mit6.828 lab1',
+        link: decodeURI(location.href),
+        desc: 'mit6.828 lab1:Booting a PC 1.为什么要学习这门课程 刚刚经历过秋招，深刻感觉到自己计算机知识还不够扎实。尽管也能拿到好几个大厂offer，但扪心自问，很多os的',
+        owner: 'tangmengqiu',
+        repo: 'bloggitcomment',
+        oauth: {
+          client_id: '69ba0036f6b242f8b964',
+          client_secret: '2f11bca7eb0ffc94c2f90610d5c023442a0401e1'
+        }
+      });
+      gitment.render('comments-gitment');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:sctmq@zju.edu.cn" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/tangmengqiu" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.zhihu.com/people/tang-meng-qiu-75/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://space.bilibili.com/102311033" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://tangmengqiu.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> site pv: <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> site uv: <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tmq</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

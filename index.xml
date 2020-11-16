@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>tmq</copyright>
-    <lastBuildDate>Mon, 31 Aug 2020 11:18:15 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 15 Nov 2020 11:18:15 +0800</lastBuildDate>
     
 	<atom:link href="http://tangmengqiu.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>http://tangmengqiu.github.io/about/</guid>
       <description>大家好，勒是秋酱，欢迎来到我的博客。我是一个半路出家的计算机硕士生，来自浙江大学，将于2021年毕业。我曾从事golang web 开发和cuda并</description>
+    </item>
+    
+    <item>
+      <title>mit6.828 lab1</title>
+      <link>http://tangmengqiu.github.io/post/2020-11-15-mit6.828-lab1/</link>
+      <pubDate>Sun, 15 Nov 2020 11:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2020-11-15-mit6.828-lab1/</guid>
+      <description>mit6.828 lab1:Booting a PC 1.为什么要学习这门课程 刚刚经历过秋招，深刻感觉到自己计算机知识还不够扎实。尽管也能拿到好几个大厂offer，但扪心自问，很多os的</description>
     </item>
     
     <item>

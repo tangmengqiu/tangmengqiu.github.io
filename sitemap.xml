@@ -9,6 +9,13 @@
   </url>
   
   <url>
+    <loc>http://tangmengqiu.github.io/post/2020-11-15-mit6.828-lab1/</loc>
+    <lastmod>2020-11-15T11:18:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://tangmengqiu.github.io/post/2020-08-31-%E8%A7%A3%E6%9E%90flv%E8%A7%86%E9%9F%B3%E9%A2%91%E5%B0%81%E8%A3%85%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2020-08-31T11:18:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -73,34 +80,48 @@
   
   <url>
     <loc>http://tangmengqiu.github.io/categories/</loc>
-    <lastmod>2020-08-31T11:18:15+08:00</lastmod>
+    <lastmod>2020-11-15T11:18:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://tangmengqiu.github.io/tags/flv/</loc>
-    <lastmod>2020-08-31T11:18:15+08:00</lastmod>
+    <loc>http://tangmengqiu.github.io/categories/os/</loc>
+    <lastmod>2020-11-15T11:18:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://tangmengqiu.github.io/tags/os/</loc>
+    <lastmod>2020-11-15T11:18:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://tangmengqiu.github.io/post/</loc>
-    <lastmod>2020-08-31T11:18:15+08:00</lastmod>
+    <lastmod>2020-11-15T11:18:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://tangmengqiu.github.io/tags/</loc>
-    <lastmod>2020-08-31T11:18:15+08:00</lastmod>
+    <lastmod>2020-11-15T11:18:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://tangmengqiu.github.io/</loc>
+    <lastmod>2020-11-15T11:18:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://tangmengqiu.github.io/tags/flv/</loc>
     <lastmod>2020-08-31T11:18:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -128,14 +149,14 @@
   </url>
   
   <url>
-    <loc>http://tangmengqiu.github.io/tags/docker/</loc>
+    <loc>http://tangmengqiu.github.io/categories/docker/</loc>
     <lastmod>2020-02-11T11:18:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://tangmengqiu.github.io/categories/docker/</loc>
+    <loc>http://tangmengqiu.github.io/tags/docker/</loc>
     <lastmod>2020-02-11T11:18:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
