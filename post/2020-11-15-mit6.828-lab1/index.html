@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2020-11-15T11:18:15&#43;08:00" />
 <meta itemprop="dateModified" content="2020-11-15T11:18:15&#43;08:00" />
-<meta itemprop="wordCount" content="3065">
+<meta itemprop="wordCount" content="3122">
 
 
 
@@ -131,7 +131,7 @@
         <div class="post-category">
             <a href="/categories/os/"> os </a>
             </div>
-          <span class="more-meta"> 3065 words </span>
+          <span class="more-meta"> 3122 words </span>
           <span class="more-meta"> 7 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -214,14 +214,18 @@ make &amp;&amp; make install
 
 <p>boot loader的主要两个作用，上一节一级阐述过，首先，boot loader的代码指令被加载到了<code>0x7c00</code>开始的位置，练习三的任务，就是在gdb中，深入boot loader 两个代码文件中追踪指令的执行，思考每一条指令的意义，所以第一个点断设置在0x7c00。需要注意的是，在boot loader代码指令执行期间，栈的起始地址，是<code>0x7c00</code>，然后向低地址增长，所以在调试boot loader的过程中，可以一直手动模拟这个栈:</p>
 
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkqtyboa46j309m0taq4f.jpg" alt="" />
-<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkqtysevxuj30980ucgnd.jpg" alt="" />
-<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkqtz4aaqaj309y082glp.jpg" alt="" /></p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkqtyboa46j309m0taq4f.jpg" alt="" /></p>
+
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkqtysevxuj30980ucgnd.jpg" alt="" /></p>
+
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkqtz4aaqaj309y082glp.jpg" alt="" /></p>
 
 <p>总结一下，栈的生长过程是：调用某个函数，会先保存调用返回的下一条指令的地址，然后将参数按照倒序压栈，进入该函数后，先保存<code>ebp</code>的值，然后把调用过程中会使用到的<code>调用者保存寄存器</code>的值压栈，后面就是处理该调用的逻辑。</p>
 
 <p>在读取内核文件到物理地址<code>0x100000</code>的过程中，首先要正确认识到ELF文件的格式：
-<img src="/Users/tangmengqiu/Library/Application Support/typora-user-images/image-20201114155145012.png" alt="image-20201114155145012" /></p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkrc2v8b3pj30jm0loq59.jpg" alt="" /></p>
+
+<p>下面函数就是首先读入第一个扇区，然后找到program header table，遍历这个table，加载每个段至对应的LMA。</p>
 
 <pre><code># boot/main.c
     struct Proghdr *ph, *eph;
@@ -304,7 +308,7 @@ movl    $(bootstacktop),%esp
 
 <p>所有代码写好后，命令行中： <code>make grade</code> 就是对整个lab1的code进行测试：</p>
 
-<p><img src="http://ww1.sinaimg.cn/large/006AK9Vqly1gkqz1ivspkj30we0pkn0h.jpg" alt="image.png" /></p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkrc0u69ogj30pu0w0gpr.jpg" alt="" /></p>
 
 <p>全部通过的话就会是以上结果。</p>
 
