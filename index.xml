@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>tmq</copyright>
-    <lastBuildDate>Sun, 15 Nov 2020 11:18:15 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 27 Nov 2020 11:18:15 +0800</lastBuildDate>
     
 	<atom:link href="http://tangmengqiu.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>http://tangmengqiu.github.io/about/</guid>
       <description>大家好，勒是秋酱，欢迎来到我的博客。我是一个半路出家的计算机硕士生，来自浙江大学，将于2021年毕业。我曾从事golang web 开发和cuda并</description>
+    </item>
+    
+    <item>
+      <title>mit6.828 lab2</title>
+      <link>http://tangmengqiu.github.io/post/2020-11-27-mit-6.828-lab2/</link>
+      <pubDate>Fri, 27 Nov 2020 11:18:15 +0800</pubDate>
+      
+      <guid>http://tangmengqiu.github.io/post/2020-11-27-mit-6.828-lab2/</guid>
+      <description>mit6.828 lab2:Memory Management 讲义概要 对于一个4GB的虚拟内存，虚拟地址占到32位。我们将内存中划分为一个一个的页组成，每页占4KB，那么整个虚拟内存中就存在2^2</description>
     </item>
     
     <item>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>mit6.828 lab2 - 秋酱的Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="秋酱" /><meta name="description" content="大名鼎鼎的6.828，第2个lab" /><meta name="keywords" content="os" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.1 with theme even" />
+
+
+<link rel="canonical" href="http://tangmengqiu.github.io/post/2020-11-27-mit-6.828-lab2/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="mit6.828 lab2" />
+<meta property="og:description" content="大名鼎鼎的6.828，第2个lab" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://tangmengqiu.github.io/post/2020-11-27-mit-6.828-lab2/" />
+<meta property="article:published_time" content="2020-11-27T11:18:15+08:00" />
+<meta property="article:modified_time" content="2020-11-27T11:18:15+08:00" />
+<meta itemprop="name" content="mit6.828 lab2">
+<meta itemprop="description" content="大名鼎鼎的6.828，第2个lab">
+
+
+<meta itemprop="datePublished" content="2020-11-27T11:18:15&#43;08:00" />
+<meta itemprop="dateModified" content="2020-11-27T11:18:15&#43;08:00" />
+<meta itemprop="wordCount" content="2807">
+
+
+
+<meta itemprop="keywords" content="os," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="mit6.828 lab2"/>
+<meta name="twitter:description" content="大名鼎鼎的6.828，第2个lab"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">守护全世界最好的秋酱</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">守护全世界最好的秋酱</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">mit6.828 lab2</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-27 </span>
+        <div class="post-category">
+            <a href="/categories/os/"> os </a>
+            </div>
+          <span class="more-meta"> 2807 words </span>
+          <span class="more-meta"> 6 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#center-mit6-828-lab2-memory-management-center"><center> mit6.828 lab2:Memory Management </center></a>
+<ul>
+<li><a href="#讲义概要">讲义概要</a></li>
+<li><a href="#lab">Lab:</a>
+<ul>
+<li><a href="#part-1-memory-management">part 1 Memory Management</a></li>
+<li><a href="#part-2-virtual-memory">part 2 Virtual Memory</a></li>
+<li><a href="#part3-kernel-address-space">part3 kernel address space</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="center-mit6-828-lab2-memory-management-center"><center> mit6.828 lab2:Memory Management </center></h1>
+
+<h2 id="讲义概要">讲义概要</h2>
+
+<p>对于一个4GB的虚拟内存，虚拟地址占到32位。我们将内存中划分为一个一个的页组成，每页占4KB，那么整个虚拟内存中就存在2^20个页面。所以需要有一个映射（翻译）机制来讲虚拟地址转化为物理地址。也即：page table:</p>
+
+<p>它是一个高度为2的树：</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkz2eudl0sj30us0qswhi.jpg" alt="image-20201123135727848" /></p>
+
+<p>树根是一个 page Directory，该结构有1024个条目，每个条目可以指向一个page table。每个page table中又存在1024个entry（PTE）里面保存了某个物理地址的PPN 和一些flag。</p>
+
+<p>所以翻译的流程如下：</p>
+
+<ol>
+<li><p>先取32位地址的最高10位，查找到page directory的PPN，根据PPN 查找page table。</p></li>
+
+<li><p>然后根据接下来的10bit查找page table中的PPN，作为物理地址的高20位，剩余12位原样拼凑到物理地址低12位。</p></li>
+</ol>
+
+<p>各进程都有各自的页表，其虚拟内存到物理内存的映射关系如下：</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkz2vhqycuj30t20v6q79.jpg" alt="image-20201123141330805" /></p>
+
+<p>当该进程申请内存时，系统会找一块空闲的页面，然后新增一个PTE至其页表中，指向该物理页面。然后设置该PTE的flag，说明其使用情况、读写情况等。</p>
+
+<p>将虚拟地址<code>KERNBASE:KERNBASE+PHTSTOP</code> 映射至：物理地址<code>0-PHYSTOP</code>，</p>
+
+<h2 id="lab">Lab:</h2>
+
+<h3 id="part-1-memory-management">part 1 Memory Management</h3>
+
+<p>Lab1 最后进入了kern/init.c 中的<code>i386_init</code>函数，该函数调用了：</p>
+
+<p><code>mem_init</code>函数，这就是本节lab的入口。</p>
+
+<p>首先参考一下下图，lab1结束后，物理内存分布如下：</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gl0h5es3ztj313q0buadu.jpg" alt="image-20201124191256529" /></p>
+
+<p>总体来看，物理地址空间的布局如下：</p>
+
+<ol>
+<li>从0x00000~0xA0000，（低640KB）这部分叫做basemem，是可用的。</li>
+<li>从0xA0000~0x100000，这部分叫做IO hole，是不可用的，主要被用来分配给外部设备了。</li>
+<li>从0x100000~0x，这部分叫做extmem，是可用的，这是最重要的内存区域。</li>
+</ol>
+
+<p>这个子函数中包括三个变量，其中</p>
+
+<p>npages记录整个内存的页数，</p>
+
+<p>npages_basemem记录basemem的页数</p>
+
+<p>npages_extmem记录extmem的页数。</p>
+
+<p><code>mem_init</code>的作用就是将现有的物理地址空间，加上页表机制开起后的内容，映射至于<code>memlayout.h</code>中所示的虚拟地址空间结构上去。</p>
+
+<p>接上面虚拟地址转换，在虚拟地址开启之前，首先需要有页表，并且必须先分配一个页目录，<code>kern_pgdir</code> 这个指针就会指向页目录所在地址，<code>boot_alloc</code> 这个函数就是为页目录分配一个页的大小，返回这个指针。</p>
+
+<p>如何计算是否超出内存分配界限？为什么是nextfree - kernbase？</p>
+
+<p>第一次调用<code>boot_alloc</code> 后，分配了一个屋里页面，然后接下来要求我们补充代码，为页表分配物理页面，页表数量为：<code>npages</code>,其物理页面就紧跟着之前那个页目录后面，需要注意的是，第一次计算<code>nextfree</code>需要进行PGSIZE 对齐，<code>end</code> 是前面加载kernel各个段的最后一个段的末尾地址，所以首先会计算该地址向后第一个4kb整数倍的地址来初始化静态变量<code>nextfree</code>的初始值。<code>nextfree</code>与<code>end</code>之间就会有一个空白的余留的空间。之后的物理内存结构如下：</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gl0hmqj7kkj311w0asjvk.jpg" alt="image-20201124192937985" /></p>
+
+<p>接下来看<code>page_init</code>：</p>
+
+<p>注释中已经写明了，他示例代码是把所有物理内存都当做是空闲可用的内存，但从我们上图来看，第0块页是不可用的，BIOS，<code>640kb-1MB</code>这一块也是不可用的，以及在extend mem中已经被使用的部分，所以在init需要把这几块排除。然后将<code>page_free_list</code>当做头指针，将<code>pages[i]</code>的地址<code>&amp;pages[i]</code>当做新节点，依次头插到<code>page_free_list</code>，完成后，page_free_list 就可以当做一个空闲链表的头指针，遍历完所有的页表：<code>pages</code>。</p>
+
+<p>然后是:<code>check_page_free_list(1)</code>，当输入 参数1时，会将前面生成的空闲链表反转，使得其链接的页表项，是从0-1023,然后检查每个页面是否空闲等。这里不需要我们操作。</p>
+
+<p>继续查看<code>mem_init</code>的代码，进入到：<code>check_page_alloc</code>中，依次补充：<code>page_alloc</code> 和<code>page_free</code>函数。这两个函数都比较简单，只需要根据page_free_list 去取或者换一个PageInfo ，修改链表状态即可。</p>
+
+<h3 id="part-2-virtual-memory">part 2 Virtual Memory</h3>
+
+<p>接下来手写页表管理程序：<code>pgdir_walk</code>，功能为：给一个页目录指针和线性地址va，返回该地址所对应的页表项指针。</p>
+
+<ol>
+<li>根据前面虚地址转为物理地址的步骤，第一部分10bit用于找到该地址页表所在页目录项在页目录中的偏移。</li>
+<li>通过该页目录项可以找到该地址对应的页表目录。</li>
+<li>通过虚地址第二部分10bit，找到其页表项在页表中的偏移，返回该页表项的地址。</li>
+</ol>
+
+<p>如何使用mmu.h中定义的宏来快捷的完成这些转换，需要去查看xv6代码中的注释。</p>
+
+<p>接下来完成<code>boot_map_region</code>，该函数的作用在注释中已经写明白了。因为size至少是以PGSIZE对齐的，所以可以用一个循环，每次从SIZE中取一个页的大小，将虚地址和物理地址的对应关系写在页表项中。还记得上个<code>pagedir_walk</code>就是根据虚地址返回该地址对应的页表项，所以这里就可以派上用场:</p>
+
+<pre><code>pte_t entry = pgdir_walk(pgdir,va,1);
+*entry = (pa | perm | PTE_P);  //将该页表项记录映射至物理地址pa,修改presence位
+</code></pre>
+
+<p>再看<code>page_insert</code>:</p>
+
+<p>将物里页面所对应的pageInfo 映射到虚拟地址va</p>
+
+<ol>
+<li>首先可以根据<code>pagedir_walk</code>找出va对应的页表项。</li>
+<li>增加pp-&gt;ref</li>
+<li>如果该页表项的presence不为0，说明已有其他 页面的映射，应该先移除tlb和该映射</li>
+<li>将该页表项修改为该虚拟地址已经对应的flag</li>
+<li>修改对应页表目录项的permission</li>
+</ol>
+
+<p><code>page_lookup</code>:返回 虚拟地址va所映射的page</p>
+
+<ol>
+<li><code>pagedir_walk</code> 找到va对应的页表项。</li>
+<li>检查页表项PTE_P为0，若是则直接返回</li>
+<li>通过<code>PTE_ADDR</code>将页表项转为物理地址，然后<code>pa2page</code>将物理地址转为PageInfo</li>
+</ol>
+
+<p>最后<code>page_remove</code>：取消虚拟地址va的映射</p>
+
+<ol>
+<li><code>pagedir_walk</code> 找到va对应的页表项。</li>
+<li>通过上面的<code>page_lookup</code>找到对应的page</li>
+<li>调用<code>page_decref</code>来处理ref引用计数以及物理页面的释放。</li>
+<li>取消va对应快表缓存</li>
+</ol>
+
+<h3 id="part3-kernel-address-space">part3 kernel address space</h3>
+
+<p>这一节主要研究内存空间布局，主要的练习任务就是补充完<code>mem_init</code>中，<code>check_page</code>之后的代码，首先要映射pages，页表。根据<code>memlayout.h</code>中的虚拟内存示意图，pages在虚拟内存的起始地址为：<code>UPAGES</code>，其长度为 <code>PTSIZE</code> ,其物理地址可以使用相关宏得到：</p>
+
+<pre><code>boot_map_region(kern_pgdir,UPAGES,PTSIZE,PADDR(pages),PTE_U);
+</code></pre>
+
+<p>接着要映射内核栈，这部分代码注释中指出了，内核站本来很长，达到了PTSIZE，但目前来说分为两部分，我们只需要映射第一部分：<code>[KSTACKTOP-KSTKSIZE, KSTACKTOP)</code>.</p>
+
+<pre><code>boot_map_region(kern_pgdir,KSTACKTOP-KSTKSIZE,KSTKSIZE,PADDR(bootstack),PTE_W);
+</code></pre>
+
+<p>最后将所有的物理地址，都映射到<code>KERNBASE</code>,这句话没看懂，可以参考注释中的例子：</p>
+
+<p>将虚拟地址 <code>[KERNBASE, 2^32)</code> 映射到物理地址 <code>[0, 2^32 - KERNBASE)</code></p>
+
+<pre><code>boot_map_region(kern_pgdir,KERNBASE,0xffffffff-KERNBASE,0,PTE_W);
+</code></pre>
+
+<p>到这里，lab2就全部完成啦。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">秋酱</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-11-27
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/weixin-qrcode.png">
+        <span>wechat</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/alipay.png">
+        <span>alipay</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/os/">os</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/2020-11-15-mit6.828-lab1/">
+            <span class="next-text nav-default">mit6.828 lab1</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="comments-gitment"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitment = new Gitment({
+        id: '2020-11-27 11:18:15 \x2b0800 CST',
+        title: 'mit6.828 lab2',
+        link: decodeURI(location.href),
+        desc: 'mit6.828 lab2:Memory Management 讲义概要 对于一个4GB的虚拟内存，虚拟地址占到32位。我们将内存中划分为一个一个的页组成，每页占4KB，那么整个虚拟内存中就存在2^2',
+        owner: 'tangmengqiu',
+        repo: 'bloggitcomment',
+        oauth: {
+          client_id: '69ba0036f6b242f8b964',
+          client_secret: '2f11bca7eb0ffc94c2f90610d5c023442a0401e1'
+        }
+      });
+      gitment.render('comments-gitment');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:sctmq@zju.edu.cn" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/tangmengqiu" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.zhihu.com/people/tang-meng-qiu-75/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://space.bilibili.com/102311033" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://tangmengqiu.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> site pv: <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> site uv: <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tmq</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
